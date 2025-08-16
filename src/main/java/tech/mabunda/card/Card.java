@@ -1,6 +1,6 @@
 package tech.mabunda.card;
 
-public class Card {
+public abstract class Card {
     private Type type;
     private String value;
     private Color color;
@@ -21,6 +21,17 @@ public class Card {
 
     public Color getColor() {
         return color;
+    }
+
+    public abstract boolean play();
+
+    public static Card create(Type type, String value, Color color) {
+        return switch (type) {
+            case NUMBER -> new NumberCard(value, color);
+            case ACTION -> new ActionCard(value, color);
+            case WILD -> new WildCard(value);
+            default -> null;
+        };
     }
 
     @Override
