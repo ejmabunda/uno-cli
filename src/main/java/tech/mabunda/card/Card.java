@@ -1,5 +1,7 @@
 package tech.mabunda.card;
 
+import java.util.List;
+
 public abstract class Card {
     private Type type;
     private String value;
@@ -27,10 +29,18 @@ public abstract class Card {
 
     public static Card create(Type type, String value, Color color) {
         return switch (type) {
-            case NUMBER -> new NumberCard(value, color);
-            case ACTION -> new ActionCard(value, color);
-            case WILD -> new WildCard(value);
-            default -> null;
+            case NUMBER -> {
+                List<String> values = List.of("0", "1", "2", "3", "4", "5", "6", "7", "8", "9");
+                yield values.contains(value) ? new NumberCard(value, color) : null;
+            }
+            case ACTION -> {
+                List<String> values = List.of("skip", "reverse", "draw two");
+                yield values.contains(value) ? new ActionCard(value, color) : null;
+            }
+            case WILD -> {
+                List<String> values = List.of("wild", "wild draw four");
+                yield values.contains(value) ? new WildCard(value) : null;
+            }
         };
     }
 
