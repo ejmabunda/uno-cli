@@ -39,9 +39,13 @@ public abstract class Card {
             }
             case WILD -> {
                 List<String> values = List.of("wild", "wild draw four");
-                yield values.contains(value) ? new WildCard(value) : null;
+                yield values.contains(value) ? new WildCard(value): null;
             }
         };
+    }
+
+    public static Card create(Type type, String value) {
+        return create(type, value, null);
     }
 
     @Override
