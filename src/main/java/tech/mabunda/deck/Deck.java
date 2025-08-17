@@ -13,10 +13,16 @@ import tech.mabunda.card.enums.Number;
 import tech.mabunda.card.enums.Type;
 import tech.mabunda.card.enums.Wild;
 
+/**
+ * Represents a deck of UNO cards, including draw and discard piles.
+ */
 public class Deck {
     private ArrayList<Card> draw_pile;
     private ArrayList<Card> discard_pile;
 
+    /**
+     * Constructs a new deck with all UNO cards and shuffles the draw pile.
+     */
     public Deck() {
         draw_pile = new ArrayList<>();
         draw_pile.addAll(getNumberCards());
@@ -27,10 +33,18 @@ public class Deck {
         discard_pile = new ArrayList<>();
     }
 
+    /**
+     * Shuffles the draw pile.
+     */
     public void shuffle() {
         Collections.shuffle(draw_pile);
     }
 
+    /**
+     * Returns the draw pile of the deck.
+     *
+     * @return the draw pile as an ArrayList of Card
+     */
     public ArrayList<Card> getDrawPile() {
         return draw_pile;
     }
