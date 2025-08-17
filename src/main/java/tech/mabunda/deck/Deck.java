@@ -58,12 +58,8 @@ public class Deck {
                     Card numberCard = Card.create(Type.NUMBER, number.toString(), color);
                     if (number.equals(Number.ZERO) && numberCards.contains(numberCard)) {
                         continue;
-                    } else
-                    NumberCard numberCard = new NumberCard(number, color);
-                    if (number.equals(Number.ZERO) && numberCards.contains(numberCard)) {
-                        continue;
-                    } else
-                        numberCards.add(numberCard);
+                    } else {
+                        numberCards.add(numberCard);}
                 }
             }
         }

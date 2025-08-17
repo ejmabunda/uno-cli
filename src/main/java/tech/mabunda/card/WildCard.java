@@ -1,7 +1,5 @@
 package tech.mabunda.card;
 
-import java.util.List;
-
 import tech.mabunda.card.enums.Type;
 import tech.mabunda.card.enums.Wild;
 
@@ -28,14 +26,5 @@ public class WildCard extends Card {
     public boolean play() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'play'");
-    }
-
-    /**
-     * Returns the possible values for wild cards.
-     *
-     * @return list of possible wild card values
-     */
-    public static List<String> getPossibleValues() {
-        return possibleValues;
     }
 }

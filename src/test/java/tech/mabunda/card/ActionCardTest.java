@@ -3,7 +3,6 @@ package tech.mabunda.card;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
-import tech.mabunda.card.enums.Action;
 import tech.mabunda.card.enums.Color;
 import tech.mabunda.card.enums.Type;
 
@@ -18,8 +17,6 @@ class ActionCardTest {
 
     @Test
     void testCardComparison() {
-        Card number1Card = Card.create(Type.NUMBER, "one", Color.BLUE);
-        Card anotherNumber1Card = Card.create(Type.NUMBER, "onE", Color.BLUE);
         Card blueReverseCard = Card.create(Type.ACTION, "REVERSE", Color.BLUE);
         Card anotherBlueReverseCard = Card.create(Type.ACTION, "reverse", Color.BLUE);
         assertEquals(blueReverseCard, anotherBlueReverseCard);
