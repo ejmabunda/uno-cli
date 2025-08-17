@@ -59,7 +59,11 @@ public class Deck {
                     if (number.equals(Number.ZERO) && numberCards.contains(numberCard)) {
                         continue;
                     } else
-                        numberCards.add(new NumberCard(number, color));
+                    NumberCard numberCard = new NumberCard(number, color);
+                    if (number.equals(Number.ZERO) && numberCards.contains(numberCard)) {
+                        continue;
+                    } else
+                        numberCards.add(numberCard);
                 }
             }
         }
