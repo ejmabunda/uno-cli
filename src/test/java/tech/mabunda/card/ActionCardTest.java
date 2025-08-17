@@ -3,6 +3,9 @@ package tech.mabunda.card;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
+import tech.mabunda.card.enums.Color;
+import tech.mabunda.card.enums.Type;
+
 class ActionCardTest {
     @Test
     void testCardInit() {

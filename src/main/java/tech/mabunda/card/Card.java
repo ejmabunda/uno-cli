@@ -2,6 +2,9 @@ package tech.mabunda.card;
 
 import java.util.List;
 
+import tech.mabunda.card.enums.Color;
+import tech.mabunda.card.enums.Type;
+
 public abstract class Card {
     private Type type;
     private String value;
