@@ -20,6 +20,8 @@ class ActionCardTest {
     void testCardComparison() {
         Card number1Card = Card.create(Type.NUMBER, "one", Color.BLUE);
         Card anotherNumber1Card = Card.create(Type.NUMBER, "onE", Color.BLUE);
-        assertEquals(number1Card, anotherNumber1Card);
+        Card blueReverseCard = Card.create(Type.ACTION, "REVERSE", Color.BLUE);
+        Card anotherBlueReverseCard = Card.create(Type.ACTION, "reverse", Color.BLUE);
+        assertEquals(blueReverseCard, anotherBlueReverseCard);
     }
 }
