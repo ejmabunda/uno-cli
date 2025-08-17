@@ -7,8 +7,11 @@ import tech.mabunda.card.ActionCard;
 import tech.mabunda.card.Card;
 import tech.mabunda.card.NumberCard;
 import tech.mabunda.card.WildCard;
+import tech.mabunda.card.enums.Action;
 import tech.mabunda.card.enums.Color;
+import tech.mabunda.card.enums.Number;
 import tech.mabunda.card.enums.Type;
+import tech.mabunda.card.enums.Wild;
 
 public class Deck {
     private ArrayList<Card> draw_pile;
@@ -37,10 +40,12 @@ public class Deck {
 
         for (int a = 0; a < 2; a++) {
             for (Color color : Color.values()) {
-                for (String number : NumberCard.getPossibleValues()) {
-                    Card numberCard = Card.create(Type.NUMBER, number, color);
-                    if (number.equals("0") && draw_pile.contains(numberCard)) { continue; }
-                    else numberCards.add(new NumberCard(number, color));
+                for (Number number : Number.values()) {
+                    Card numberCard = Card.create(Type.NUMBER, number.toString(), color);
+                    if (number.equals(Number.ZERO) && numberCards.contains(numberCard)) {
+                        continue;
+                    } else
+                        numberCards.add(new NumberCard(number, color));
                 }
             }
         }
@@ -52,8 +57,8 @@ public class Deck {
         ArrayList<Card> actionCards = new ArrayList<>();
         for (int a = 0; a < 2; a++) {
             for (Color color : Color.values()) {
-                for (String action : ActionCard.getPossibleValues()) {
-                    actionCards.add(new NumberCard(action, color));
+                for (Action action : Action.values()) {
+                    actionCards.add(new ActionCard(action, color));
                 }
             }
         }
@@ -63,9 +68,10 @@ public class Deck {
 
     private ArrayList<Card> getWildCards() {
         ArrayList<Card> wildCards = new ArrayList<>();
-        for (int a = 0; a < 2; a++) {
-            for (String action : ActionCard.getPossibleValues()) {
-                wildCards.add(new WildCard(action));
+
+        for (Wild wild : Wild.values()) {
+            for (int i = 0; i < 4; i++) {
+                wildCards.add(new WildCard(wild));
             }
         }
 

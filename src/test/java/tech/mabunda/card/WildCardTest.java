@@ -8,16 +8,16 @@ import tech.mabunda.card.enums.Type;
 class WildCardTest {
     @Test
     void testCardInit() {
-        Card wildCard = new WildCard("wild");
+        Card wildCard = Card.create(Type.WILD, "wild draw four");
         assertEquals(Type.WILD, wildCard.getType());
-        assertEquals("wild", wildCard.getValue());
+        assertEquals("WILD_DRAW_FOUR", wildCard.getValue());
         assertEquals(null, wildCard.getColor());
     }
 
     @Test
     void testCardComparison() {
-        Card wildCard = new WildCard("wild draw four");
-        Card anotherWildCard = new WildCard("wild draw four");
+        Card wildCard = Card.create(Type.WILD, "wild draw four");
+        Card anotherWildCard = Card.create(Type.WILD, "wild draw four");
         assertEquals(wildCard, anotherWildCard);
     }
 }

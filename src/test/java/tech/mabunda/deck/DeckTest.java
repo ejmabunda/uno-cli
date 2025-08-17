@@ -11,12 +11,11 @@ public class DeckTest {
     @Test
     void testDeckInit() {
         Deck deck = new Deck();
-        assertEquals(108, deck.getDrawPile().size());
-
+        
         int numberCards = 0;
         int actionCards = 0;
         int wildCards = 0;
-
+        
         for (Card card: deck.getDrawPile()) {
             if (card.getType() == Type.NUMBER) {
                 numberCards += 1;
@@ -26,9 +25,11 @@ public class DeckTest {
                 wildCards += 1;
             }
         }
-
-        assertEquals(76, numberCards);
-        assertEquals(24, actionCards);
-        assertEquals(8, wildCards);
+        
+        assertEquals(76, numberCards, "A standard UNO deck has 76 number cards.");
+        assertEquals(24, actionCards, "A standard UNO deck has 24 action cards.");
+        assertEquals(8, wildCards, "A standard UNO deck has 8 wild cards.");
+        
+        assertEquals(108, deck.getDrawPile().size(), "A standard UNO deck has 108 cards.");
     }
 }

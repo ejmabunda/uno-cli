@@ -1,9 +1,13 @@
 package tech.mabunda.card;
 
+import java.util.Arrays;
 import java.util.List;
 
+import tech.mabunda.card.enums.Action;
 import tech.mabunda.card.enums.Color;
+import tech.mabunda.card.enums.Number;
 import tech.mabunda.card.enums.Type;
+import tech.mabunda.card.enums.Wild;
 
 public abstract class Card {
     private Type type;
@@ -31,18 +35,22 @@ public abstract class Card {
     public abstract boolean play();
 
     public static Card create(Type type, String value, Color color) {
+        value = value.replace(" ", "_").toUpperCase();
         return switch (type) {
             case NUMBER -> {
-                List<String> values = List.of("0", "1", "2", "3", "4", "5", "6", "7", "8", "9");
-                yield values.contains(value) ? new NumberCard(value, color) : null;
+                Number number = Number.valueOf(value);
+                List<Number> values = Arrays.asList(Number.values());
+                yield values.contains(number) ? new NumberCard(number, color) : null;
             }
             case ACTION -> {
-                List<String> values = List.of("skip", "reverse", "draw two");
-                yield values.contains(value) ? new ActionCard(value, color) : null;
+                Action action = Action.valueOf(value);
+                List<Action> values = Arrays.asList(Action.values());
+                yield values.contains(action) ? new ActionCard(action, color) : null;
             }
             case WILD -> {
-                List<String> values = List.of("wild", "wild draw four");
-                yield values.contains(value) ? new WildCard(value): null;
+                Wild wild = Wild.valueOf(value);
+                List<Wild> values = Arrays.asList(Wild.values());
+                yield values.contains(wild) ? new WildCard(wild): null;
             }
         };
     }
