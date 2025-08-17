@@ -9,7 +9,6 @@ import tech.mabunda.card.enums.Wild;
  * Represents a wild card in UNO (Wild, Wild Draw Four).
  */
 public class WildCard extends Card {
-    private static List<String> possibleValues = List.of("wild", "wild draw four");
 
     /**
      * Constructs a WildCard with the specified wild value.
