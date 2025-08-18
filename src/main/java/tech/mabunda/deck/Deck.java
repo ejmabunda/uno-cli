@@ -5,7 +5,6 @@ import java.util.Collections;
 
 import tech.mabunda.card.ActionCard;
 import tech.mabunda.card.Card;
-import tech.mabunda.card.NumberCard;
 import tech.mabunda.card.WildCard;
 import tech.mabunda.card.enums.Action;
 import tech.mabunda.card.enums.Color;
@@ -18,7 +17,6 @@ import tech.mabunda.card.enums.Wild;
  */
 public class Deck {
     private ArrayList<Card> draw_pile;
-    private ArrayList<Card> discard_pile;
 
     /**
      * Constructs a new deck with all UNO cards and shuffles the draw pile.
@@ -29,8 +27,6 @@ public class Deck {
         draw_pile.addAll(getActionCards());
         draw_pile.addAll(getWildCards());
         shuffle();
-
-        discard_pile = new ArrayList<>();
     }
 
     /**
