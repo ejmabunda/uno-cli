@@ -37,10 +37,6 @@ public class Hand {
      * @return true if the card was removed, false if the card was not found
      */
     public boolean remove_card(Card card) {
-        if (cards.contains(card)) { 
-            cards.remove(card);
-            return true;
-        }
         return cards.remove(card);
     }
 
