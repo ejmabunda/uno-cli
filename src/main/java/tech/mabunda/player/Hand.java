@@ -41,7 +41,7 @@ public class Hand {
             cards.remove(card);
             return true;
         }
-        return false;
+        return cards.remove(card);
     }
 
     /**
