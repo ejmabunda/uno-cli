@@ -1,6 +1,8 @@
 
 package tech.mabunda.player;
 
+import tech.mabunda.deck.Deck;
+
 /**
  * Represents a human player in the UNO game.
  * This class extends {@link Player} and is intended to implement the logic for a human-controlled player.
@@ -20,17 +22,17 @@ public class HumanPlayer extends Player {
      */
     @Override
     public boolean playCard() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'playCard'");
+        return false;
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public boolean drawCard() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'drawCard'");
+    public boolean drawCard(Deck deck) {
+        hand.add_card(deck.draw_card());
+
+        return true;
     }
 
     /**
@@ -38,7 +40,6 @@ public class HumanPlayer extends Player {
      */
     @Override
     public boolean canPlay() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'canPlay'");
+        return false;
     }
 }

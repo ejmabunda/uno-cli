@@ -1,5 +1,7 @@
 package tech.mabunda.player;
 
+import tech.mabunda.deck.Deck;
+
 /**
  * Represents a player in the UNO game. This is an abstract base class for different types of players.
  * <p>
@@ -15,7 +17,7 @@ public abstract class Player {
      /**
       * The hand of cards held by the player.
       */
-     private Hand hand;
+     protected Hand hand;
 
     /**
      * Constructs a Player with the specified name and initializes an empty hand.
@@ -63,7 +65,7 @@ public abstract class Player {
      *
      * @return true if the draw is successful, false otherwise
      */
-    public abstract boolean drawCard();
+    public abstract boolean drawCard(Deck deck);
 
 
     /**
