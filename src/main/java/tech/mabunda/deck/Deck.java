@@ -15,12 +15,23 @@ import tech.mabunda.card.enums.Wild;
 /**
  * Represents a deck of UNO cards, including draw and discard piles.
  */
+/**
+ * Represents a deck of UNO cards, including draw and discard piles.
+ * Provides methods to initialize, shuffle, and draw cards from the deck.
+ */
 public class Deck {
+    /**
+     * The pile of cards from which players draw.
+     */
     private ArrayList<Card> draw_pile;
+    /**
+     * The pile of cards that have been played/discarded.
+     */
     private ArrayList<Card> discard_pile;
 
     /**
      * Constructs a new deck with all UNO cards and shuffles the draw pile.
+     * The deck consists of number, action, and wild cards as per UNO rules.
      */
     public Deck() {
         draw_pile = new ArrayList<>();
@@ -34,7 +45,8 @@ public class Deck {
     }
 
     /**
-     * Shuffles the draw pile.
+     * Shuffles the draw pile. If the draw pile is low, combines it with the discard pile (except the top card),
+     * shuffles, and resets the discard pile.
      */
     private void shuffle() {
         if (discard_pile.isEmpty()) {
@@ -52,10 +64,22 @@ public class Deck {
         discard_pile.add(topDiscardPileCard);
     }
 
+
+    /**
+     * Returns the current draw pile.
+     *
+     * @return the list of cards in the draw pile
+     */
     public ArrayList<Card> getDrawPile() {
         return draw_pile;
     }
 
+
+    /**
+     * Draws a card from the top of the draw pile. If the draw pile is low, shuffles the deck.
+     *
+     * @return the card drawn from the draw pile
+     */
     public Card draw_card() {
         if (draw_pile.size() <= 1) {
             shuffle();
@@ -67,6 +91,12 @@ public class Deck {
         return topDrawPileCard;
     }
 
+
+    /**
+     * Generates all number cards (0-9 in each color) for the UNO deck.
+     *
+     * @return a list of all number cards
+     */
     private ArrayList<Card> getNumberCards() {
         ArrayList<Card> numberCards = new ArrayList<>();
 
@@ -86,6 +116,12 @@ public class Deck {
         return numberCards;
     }
 
+
+    /**
+     * Generates all action cards (Skip, Reverse, Draw Two in each color) for the UNO deck.
+     *
+     * @return a list of all action cards
+     */
     private ArrayList<Card> getActionCards() {
         ArrayList<Card> actionCards = new ArrayList<>();
         for (int a = 0; a < 2; a++) {
@@ -99,6 +135,12 @@ public class Deck {
         return actionCards;
     }
 
+
+    /**
+     * Generates all wild cards (Wild, Wild Draw Four) for the UNO deck.
+     *
+     * @return a list of all wild cards
+     */
     private ArrayList<Card> getWildCards() {
         ArrayList<Card> wildCards = new ArrayList<>();
 

@@ -18,7 +18,9 @@ public class HumanPlayer extends Player {
     }
 
     /**
-     * {@inheritDoc}
+     * Plays a card from the human player's hand. (To be implemented)
+     *
+     * @return true if the play is valid, false otherwise
      */
     @Override
     public boolean playCard() {
@@ -26,17 +28,21 @@ public class HumanPlayer extends Player {
     }
 
     /**
-     * {@inheritDoc}
+     * Draws a card from the deck and adds it to the human player's hand.
+     *
+     * @param deck the deck to draw from
+     * @return true if the draw is successful, false otherwise
      */
     @Override
     public boolean drawCard(Deck deck) {
         hand.add_card(deck.draw_card());
-
         return true;
     }
 
     /**
-     * {@inheritDoc}
+     * Checks if the human player can make a valid play. (To be implemented)
+     *
+     * @return true if the player can play, false otherwise
      */
     @Override
     public boolean canPlay() {

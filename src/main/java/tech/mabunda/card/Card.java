@@ -11,10 +11,20 @@ import tech.mabunda.card.enums.Wild;
 
 /**
  * Abstract base class for all UNO cards.
+ * Provides common properties and methods for UNO cards, including type, value, and color.
  */
 public abstract class Card {
+    /**
+     * The type of the card (NUMBER, ACTION, WILD).
+     */
     private Type type;
+    /**
+     * The value of the card (e.g., ONE, SKIP, WILD_DRAW_FOUR).
+     */
     private String value;
+    /**
+     * The color of the card (RED, GREEN, BLUE, YELLOW), or null for wild cards.
+     */
     private Color color;
 
     /**
@@ -22,7 +32,7 @@ public abstract class Card {
      *
      * @param type  the type of the card
      * @param value the value of the card
-     * @param color the color of the card
+     * @param color the color of the card (null for wild cards)
      */
     public Card(Type type, String value, Color color) {
         this.type = type;
@@ -51,7 +61,7 @@ public abstract class Card {
     /**
      * Returns the color of the card.
      *
-     * @return the card color
+     * @return the card color, or null if the card is a wild card
      */
     public Color getColor() {
         return color;
@@ -69,7 +79,7 @@ public abstract class Card {
      *
      * @param type  the type of the card
      * @param value the value of the card
-     * @param color the color of the card
+     * @param color the color of the card (null for wild cards)
      * @return a new Card instance or null if invalid
      */
     public static Card create(Type type, String value, Color color) {
@@ -94,7 +104,7 @@ public abstract class Card {
     }
 
     /**
-     * Factory method to create a card of the specified type and value.
+     * Factory method to create a card of the specified type and value (for wild cards).
      *
      * @param type  the type of the card
      * @param value the value of the card
@@ -104,10 +114,12 @@ public abstract class Card {
         return create(type, value, null);
     }
 
-    @Override
     /**
      * Returns the hash code for this card.
+     *
+     * @return the hash code value for this card
      */
+    @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
@@ -117,13 +129,13 @@ public abstract class Card {
         return result;
     }
 
-    @Override
     /**
      * Compares this card to another object for equality.
      *
      * @param obj the object to compare
      * @return true if equal, false otherwise
      */
+    @Override
     public boolean equals(Object obj) {
         if (this == obj)
             return true;

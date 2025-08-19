@@ -9,15 +9,15 @@ import tech.mabunda.deck.Deck;
  * drawing, and checking if a play is possible, according to the rules of UNO or any custom rules.
  */
 public abstract class Player {
-     /**
-      * The name of the player.
-      */
-     private String name;
+    /**
+     * The name of the player.
+     */
+    private String name;
 
-     /**
-      * The hand of cards held by the player.
-      */
-     protected Hand hand;
+    /**
+     * The hand of cards held by the player.
+     */
+    protected Hand hand;
 
     /**
      * Constructs a Player with the specified name and initializes an empty hand.
@@ -29,7 +29,6 @@ public abstract class Player {
         this.hand = new Hand();
     }
 
-
     /**
      * Returns the name of the player.
      *
@@ -38,7 +37,6 @@ public abstract class Player {
     public String getName() {
         return name;
     }
-
 
     /**
      * Returns the hand of cards held by the player.
@@ -49,7 +47,6 @@ public abstract class Player {
         return hand;
     }
 
-
     /**
      * Plays a card from the player's hand according to the game rules.
      * This method must be implemented by subclasses.
@@ -58,15 +55,14 @@ public abstract class Player {
      */
     public abstract boolean playCard();
 
-
     /**
      * Draws a card and adds it to the player's hand.
      * This method must be implemented by subclasses.
      *
+     * @param deck the deck to draw from
      * @return true if the draw is successful, false otherwise
      */
     public abstract boolean drawCard(Deck deck);
-
 
     /**
      * Checks if the player can make a valid play based on their current hand and the game state.
