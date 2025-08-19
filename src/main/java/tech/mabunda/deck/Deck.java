@@ -17,6 +17,7 @@ import tech.mabunda.card.enums.Wild;
  */
 public class Deck {
     private ArrayList<Card> draw_pile;
+    private ArrayList<Card> discard_pile;
 
     /**
      * Constructs a new deck with all UNO cards and shuffles the draw pile.
@@ -26,23 +27,44 @@ public class Deck {
         draw_pile.addAll(getNumberCards());
         draw_pile.addAll(getActionCards());
         draw_pile.addAll(getWildCards());
+
+        this.discard_pile = new ArrayList<>();
+
         shuffle();
     }
 
     /**
      * Shuffles the draw pile.
      */
-    public void shuffle() {
+    private void shuffle() {
+        if (discard_pile.isEmpty()) {
+            Collections.shuffle(draw_pile);
+            return;
+        }
+
+        Card topDiscardPileCard = discard_pile.get(discard_pile.size());
+        discard_pile.remove(discard_pile.size());
+
+        draw_pile.addAll(discard_pile);
         Collections.shuffle(draw_pile);
+
+        discard_pile.clear();
+        discard_pile.add(topDiscardPileCard);
     }
 
-    /**
-     * Returns the draw pile of the deck.
-     *
-     * @return the draw pile as an ArrayList of Card
-     */
     public ArrayList<Card> getDrawPile() {
         return draw_pile;
+    }
+
+    public Card draw_card() {
+        if (draw_pile.size() <= 1) {
+            shuffle();
+        }
+
+        Card topDrawPileCard = draw_pile.get(draw_pile.size());
+        draw_pile.remove(draw_pile.size());
+
+        return topDrawPileCard;
     }
 
     private ArrayList<Card> getNumberCards() {
@@ -55,7 +77,8 @@ public class Deck {
                     if (number.equals(Number.ZERO) && numberCards.contains(numberCard)) {
                         continue;
                     } else {
-                        numberCards.add(numberCard);}
+                        numberCards.add(numberCard);
+                    }
                 }
             }
         }
