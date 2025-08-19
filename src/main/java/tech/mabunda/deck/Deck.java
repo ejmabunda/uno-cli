@@ -11,6 +11,7 @@ import tech.mabunda.card.enums.Color;
 import tech.mabunda.card.enums.Number;
 import tech.mabunda.card.enums.Type;
 import tech.mabunda.card.enums.Wild;
+import tech.mabunda.player.Player;
 
 /**
  * Represents a deck of UNO cards, including draw and discard piles.
@@ -54,7 +55,7 @@ public class Deck {
             return;
         }
 
-        Card topDiscardPileCard = discard_pile.get(discard_pile.size());
+        Card topDiscardPileCard = discard_pile.get(discard_pile.size() - 1);
         discard_pile.remove(discard_pile.size());
 
         draw_pile.addAll(discard_pile);
@@ -66,12 +67,48 @@ public class Deck {
 
 
     /**
+     * Deals 7 cards to each player and sets up the initial discard pile with a number card.
+     * Ensures the first discard is a number card as per UNO rules.
+     *
+     * @param players the list of players to deal cards to
+     */
+    public void deal(ArrayList<Player> players) {
+        int numCards = 7;
+        // Deal 7 cards to each player
+        for (Player player: players) {
+            for (int i = 0; i < numCards; i++) {
+                player.drawCard(this);
+            }
+        }
+
+        // Ensure the first discard is a number card
+        Card topDrawPileCard = draw_pile.get(draw_pile.size() - 1);
+        while (topDrawPileCard.getType() != Type.NUMBER) {
+            shuffle();
+            topDrawPileCard = draw_pile.get(draw_pile.size() - 1);
+        }
+
+        draw_pile.remove(draw_pile.size() - 1);
+        discard_pile.add(topDrawPileCard);
+    }
+
+
+    /**
      * Returns the current draw pile.
      *
      * @return the list of cards in the draw pile
      */
     public ArrayList<Card> getDrawPile() {
         return draw_pile;
+    }
+
+    /**
+     * Returns the current discard pile.
+     *
+     * @return the list of cards in the discard pile
+     */
+    public ArrayList<Card> getDiscardPile() {
+        return discard_pile;
     }
 
 
@@ -85,8 +122,8 @@ public class Deck {
             shuffle();
         }
 
-        Card topDrawPileCard = draw_pile.get(draw_pile.size());
-        draw_pile.remove(draw_pile.size());
+        Card topDrawPileCard = draw_pile.get(draw_pile.size() - 1);
+        draw_pile.remove(draw_pile.size() - 1);
 
         return topDrawPileCard;
     }
