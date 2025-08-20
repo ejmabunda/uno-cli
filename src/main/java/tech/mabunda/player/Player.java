@@ -1,5 +1,7 @@
 package tech.mabunda.player;
 
+import java.util.ArrayList;
+
 import tech.mabunda.card.Card;
 import tech.mabunda.deck.Deck;
 
@@ -71,20 +73,22 @@ public abstract class Player {
 
     /**
      * Checks if the player can make a valid play based on their current hand and the top card of the discard pile.
-     * <p>
+     * 
      * By default, this method checks if any card in the player's hand matches the top card of the discard pile.
      * Subclasses may override this method to implement custom playability logic.
      *
      * @param deck the current deck (to access the discard pile)
-     * @return true if the player can play, false otherwise
+     * @return a list of valid moves
      */
-    public boolean canPlay(Deck deck) {
+    public ArrayList<Card> getValidMoves(Deck deck) {
         Card topDiscardPileCard = deck.getDiscardPile().get(deck.getDiscardPile().size() - 1);
+        ArrayList<Card> validMoves = new ArrayList<>();
+        
         for (Card card: hand.getCards()) {
             if (card.match(topDiscardPileCard)) {
-                return true;
+                validMoves.add(card);
             }
         }
-        return false;
+        return validMoves;
     }
 }
