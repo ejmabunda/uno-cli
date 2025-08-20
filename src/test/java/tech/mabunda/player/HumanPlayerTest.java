@@ -1,6 +1,7 @@
 package tech.mabunda.player;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 
@@ -32,6 +33,6 @@ public class HumanPlayerTest {
             if (card.match(topDiscardPileCard)) { canPlay = true; break; }
         }
 
-        assertEquals(canPlay, player1.canPlay(deck));
+        assertEquals(canPlay, player1.getValidMoves(deck).size() >= 1);
     }
 }
