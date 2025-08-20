@@ -4,8 +4,12 @@ package tech.mabunda.player;
 import tech.mabunda.deck.Deck;
 
 /**
- * Represents a human player in the UNO game.
- * This class extends {@link Player} and is intended to implement the logic for a human-controlled player.
+ * Represents a human-controlled player in the UNO game.
+ * <p>
+ * This class extends {@link Player} and is intended to implement the logic for a player whose actions are determined by user input,
+ * such as via a command-line interface (CLI) or graphical user interface (GUI).
+ * <p>
+ * Methods in this class should be implemented to interact with the user for making moves, drawing cards, and other game actions.
  */
 public class HumanPlayer extends Player {
     /**
@@ -18,9 +22,11 @@ public class HumanPlayer extends Player {
     }
 
     /**
-     * Plays a card from the human player's hand. (To be implemented)
+     * Prompts the human player to select and play a card from their hand.
+     * <p>
+     * This method should be implemented to interact with the user and allow them to choose a card to play according to the game rules.
      *
-     * @return true if the play is valid, false otherwise
+     * @return true if the play is valid and successful, false otherwise
      */
     @Override
     public boolean playCard() {
@@ -29,6 +35,8 @@ public class HumanPlayer extends Player {
 
     /**
      * Draws a card from the deck and adds it to the human player's hand.
+     * <p>
+     * This method should be implemented to notify the user that a card has been drawn and update the hand accordingly.
      *
      * @param deck the deck to draw from
      * @return true if the draw is successful, false otherwise
@@ -37,15 +45,5 @@ public class HumanPlayer extends Player {
     public boolean drawCard(Deck deck) {
         hand.add_card(deck.draw_card());
         return true;
-    }
-
-    /**
-     * Checks if the human player can make a valid play. (To be implemented)
-     *
-     * @return true if the player can play, false otherwise
-     */
-    @Override
-    public boolean canPlay() {
-        return false;
     }
 }

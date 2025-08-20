@@ -1,6 +1,9 @@
 package tech.mabunda.card;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.Test;
 
 import tech.mabunda.card.enums.Color;
@@ -29,5 +32,21 @@ class CardTest {
         Card number1Card = Card.create(Type.NUMBER, "one", Color.BLUE);
         Card anotherNumber1Card = Card.create(Type.NUMBER, "onE", Color.BLUE);
         assertEquals(number1Card, anotherNumber1Card);
+    }
+
+    @Test
+    void testValidMoves() {
+        Card number1Card = Card.create(Type.NUMBER, "one", Color.YELLOW);
+        Card number2Card = Card.create(Type.NUMBER, "two", Color.RED);
+        assertFalse(number1Card.match(number2Card));
+
+        Card wildCard = Card.create(Type.WILD, "wild");
+        assertTrue(number1Card.match(wildCard));
+
+        Card yellowNumber1Card = Card.create(Type.NUMBER, "one", Color.YELLOW);
+        assertTrue(number1Card.match(yellowNumber1Card));
+
+        Card redReverseCard = Card.create(Type.ACTION, "reverse", Color.RED);
+        assertTrue(number2Card.match(redReverseCard));
     }
 }

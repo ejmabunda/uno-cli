@@ -1,12 +1,15 @@
 package tech.mabunda.player;
 
+import tech.mabunda.card.Card;
 import tech.mabunda.deck.Deck;
 
 /**
- * Represents a player in the UNO game. This is an abstract base class for different types of players.
+ * Abstract base class representing a player in the UNO game.
  * <p>
- * Each player has a name and a hand of cards. Subclasses should implement the logic for playing,
- * drawing, and checking if a play is possible, according to the rules of UNO or any custom rules.
+ * Each player has a name and a hand of cards. Subclasses must implement the logic for playing cards,
+ * drawing cards, and determining if a play is possible, according to the rules of UNO or any custom rules.
+ * <p>
+ * This class provides common functionality for all player types, including access to the player's name and hand.
  */
 public abstract class Player {
     /**
@@ -49,15 +52,17 @@ public abstract class Player {
 
     /**
      * Plays a card from the player's hand according to the game rules.
-     * This method must be implemented by subclasses.
+     * <p>
+     * This method must be implemented by subclasses to define how a player selects and plays a card.
      *
-     * @return true if the play is valid, false otherwise
+     * @return true if the play is valid and successful, false otherwise
      */
     public abstract boolean playCard();
 
     /**
      * Draws a card and adds it to the player's hand.
-     * This method must be implemented by subclasses.
+     * <p>
+     * This method must be implemented by subclasses to define how a player draws a card from the deck.
      *
      * @param deck the deck to draw from
      * @return true if the draw is successful, false otherwise
@@ -65,10 +70,21 @@ public abstract class Player {
     public abstract boolean drawCard(Deck deck);
 
     /**
-     * Checks if the player can make a valid play based on their current hand and the game state.
-     * This method must be implemented by subclasses.
+     * Checks if the player can make a valid play based on their current hand and the top card of the discard pile.
+     * <p>
+     * By default, this method checks if any card in the player's hand matches the top card of the discard pile.
+     * Subclasses may override this method to implement custom playability logic.
      *
+     * @param deck the current deck (to access the discard pile)
      * @return true if the player can play, false otherwise
      */
-    public abstract boolean canPlay();
+    public boolean canPlay(Deck deck) {
+        Card topDiscardPileCard = deck.getDiscardPile().get(deck.getDiscardPile().size() - 1);
+        for (Card card: hand.getCards()) {
+            if (card.match(topDiscardPileCard)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
