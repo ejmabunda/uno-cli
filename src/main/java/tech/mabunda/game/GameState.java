@@ -76,6 +76,16 @@ public class GameState {
 
 
     /**
+     * Returns the player whose turn it currently is.
+     *
+     * @return the current player
+     */
+    public Player getCurrentPlayer() {
+        return players.get(currentPlayerIndex);
+    }
+
+
+    /**
      * Sets a penalty based on the given card's value.
      *
      * @param card the card causing the penalty
@@ -100,6 +110,14 @@ public class GameState {
      */
     public void setColor(Color color) {
         this.color = color;
+    }
+
+
+    /**
+     * Reverses the direction of play (e.g., for a reverse card).
+     */
+    public void updateDirection() {
+        this.direction *= -1;
     }
 
 

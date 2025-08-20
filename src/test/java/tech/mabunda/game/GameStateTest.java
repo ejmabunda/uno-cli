@@ -36,4 +36,34 @@ public class GameStateTest {
         assertEquals("DRAW_TWO", state.getPenalty());
         assertNotNull(state.topDiscardPile());
     }
+
+    /**
+     * Tests turn management, including advancing turns and reversing direction.
+     */
+    @Test
+    void testTurnManagement() {
+        ArrayList<Player> players = new ArrayList<>();
+        players.add(new HumanPlayer("player 1"));
+        players.add(new HumanPlayer("player 2"));
+        players.add(new HumanPlayer("player 3"));
+
+        GameState state = new GameState(players);
+        assertEquals("player 1", state.getCurrentPlayer().getName());
+
+        state.updatePlayer();
+        assertEquals("player 2", state.getCurrentPlayer().getName());
+
+        state.updatePlayer();
+        assertEquals("player 3", state.getCurrentPlayer().getName());
+
+        state.updatePlayer();
+        assertEquals("player 1", state.getCurrentPlayer().getName());
+
+        state.updateDirection();
+        state.updatePlayer();
+        assertEquals("player 3", state.getCurrentPlayer().getName());
+
+        state.updatePlayer();
+        assertEquals("player 2", state.getCurrentPlayer().getName());
+    }
 }
