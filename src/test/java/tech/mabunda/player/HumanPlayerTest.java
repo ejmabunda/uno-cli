@@ -33,6 +33,6 @@ public class HumanPlayerTest {
             if (card.match(topDiscardPileCard)) { canPlay = true; break; }
         }
 
-        assertEquals(canPlay, player1.getValidMoves(deck).size() >= 1);
+        assertEquals(canPlay, !player1.getValidMoves(deck).isEmpty());
     }
 }
