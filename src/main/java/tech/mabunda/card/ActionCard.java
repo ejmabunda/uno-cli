@@ -6,7 +6,7 @@ import tech.mabunda.card.enums.Type;
 
 /**
  * Represents an action card in UNO (e.g., Skip, Reverse, Draw Two).
- * <p>
+ * 
  * Extends the {@link Card} class and provides specific behavior for action cards, which have special effects when played.
  */
 public class ActionCard extends Card {
