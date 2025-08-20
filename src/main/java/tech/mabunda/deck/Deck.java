@@ -15,10 +15,8 @@ import tech.mabunda.player.Player;
 
 /**
  * Represents a deck of UNO cards, including draw and discard piles.
- */
-/**
- * Represents a deck of UNO cards, including draw and discard piles.
- * Provides methods to initialize, shuffle, and draw cards from the deck.
+ * <p>
+ * Provides methods to initialize, shuffle, and draw cards from the deck, as well as to deal cards to players and manage the discard pile.
  */
 public class Deck {
     /**
@@ -32,6 +30,7 @@ public class Deck {
 
     /**
      * Constructs a new deck with all UNO cards and shuffles the draw pile.
+     * <p>
      * The deck consists of number, action, and wild cards as per UNO rules.
      */
     public Deck() {
@@ -68,6 +67,7 @@ public class Deck {
 
     /**
      * Deals 7 cards to each player and sets up the initial discard pile with a number card.
+     * <p>
      * Ensures the first discard is a number card as per UNO rules.
      *
      * @param players the list of players to deal cards to

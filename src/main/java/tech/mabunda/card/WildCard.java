@@ -5,7 +5,8 @@ import tech.mabunda.card.enums.Wild;
 
 /**
  * Represents a wild card in UNO (Wild, Wild Draw Four).
- * Extends the {@link Card} class and provides specific behavior for wild cards.
+ * <p>
+ * Extends the {@link Card} class and provides specific behavior for wild cards, which allow the player to change the current color or force other players to draw cards.
  */
 public class WildCard extends Card {
 
@@ -19,9 +20,10 @@ public class WildCard extends Card {
     }
 
     /**
-     * Plays the wild card. To be implemented.
+     * Plays the wild card. Must be implemented to define the effect of playing a wild card.
      *
-     * @return true if the play is valid, false otherwise
+     * @return true if the play is valid and successful, false otherwise
+     * @throws UnsupportedOperationException if not implemented
      */
     @Override
     public boolean play() {

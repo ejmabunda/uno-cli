@@ -6,7 +6,8 @@ import tech.mabunda.card.enums.Type;
 
 /**
  * Represents a number card in UNO (0-9).
- * Extends the {@link Card} class and provides specific behavior for number cards.
+ * <p>
+ * Extends the {@link Card} class and provides specific behavior for number cards, which are the most common cards in the game.
  */
 public class NumberCard extends Card {
     /**
@@ -20,9 +21,10 @@ public class NumberCard extends Card {
     }
 
     /**
-     * Plays the number card. To be implemented.
+     * Plays the number card. Must be implemented to define the effect of playing a number card.
      *
-     * @return true if the play is valid, false otherwise
+     * @return true if the play is valid and successful, false otherwise
+     * @throws UnsupportedOperationException if not implemented
      */
     @Override
     public boolean play() {

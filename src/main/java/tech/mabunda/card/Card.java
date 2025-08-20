@@ -11,7 +11,9 @@ import tech.mabunda.card.enums.Wild;
 
 /**
  * Abstract base class for all UNO cards.
+ * <p>
  * Provides common properties and methods for UNO cards, including type, value, and color.
+ * Subclasses must implement the {@link #play()} method to define card-specific play behavior.
  */
 public abstract class Card {
     /**
@@ -38,6 +40,30 @@ public abstract class Card {
         this.type = type;
         this.value = value;
         this.color = color;
+    }
+
+    /**
+     * Determines if this card matches another card according to UNO rules.
+     * <p>
+     * A card matches if it is the same card, or if the type, color, or value matches, or if the other card is a wild card.
+     *
+     * @param card the card to compare against
+     * @return true if the cards match, false otherwise
+     */
+    public boolean match(Card card) {
+        if (this.equals(card)) {
+            return true;
+        }
+        if (card.getType() == Type.WILD) {
+            return true;
+        }
+        if (this.color == card.getColor()) {
+            return true;
+        }
+        if (this.value == card.getValue()) {
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -68,17 +94,17 @@ public abstract class Card {
     }
 
     /**
-     * Plays the card. To be implemented by subclasses.
+     * Plays the card. Must be implemented by subclasses to define card-specific play logic.
      *
-     * @return true if the play is valid, false otherwise
+     * @return true if the play is valid and successful, false otherwise
      */
     public abstract boolean play();
 
     /**
      * Factory method to create a card of the specified type, value, and color.
      *
-     * @param type  the type of the card
-     * @param value the value of the card
+     * @param type  the type of the card (NUMBER, ACTION, WILD)
+     * @param value the value of the card (e.g., ONE, SKIP, WILD_DRAW_FOUR)
      * @param color the color of the card (null for wild cards)
      * @return a new Card instance or null if invalid
      */
@@ -98,7 +124,7 @@ public abstract class Card {
             case WILD -> {
                 Wild wild = Wild.valueOf(value);
                 List<Wild> values = Arrays.asList(Wild.values());
-                yield values.contains(wild) ? new WildCard(wild): null;
+                yield values.contains(wild) ? new WildCard(wild) : null;
             }
         };
     }
@@ -106,8 +132,8 @@ public abstract class Card {
     /**
      * Factory method to create a card of the specified type and value (for wild cards).
      *
-     * @param type  the type of the card
-     * @param value the value of the card
+     * @param type  the type of the card (should be WILD)
+     * @param value the value of the card (e.g., WILD, WILD_DRAW_FOUR)
      * @return a new Card instance or null if invalid
      */
     public static Card create(Type type, String value) {

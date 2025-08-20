@@ -6,7 +6,8 @@ import tech.mabunda.card.enums.Type;
 
 /**
  * Represents an action card in UNO (e.g., Skip, Reverse, Draw Two).
- * Extends the {@link Card} class and provides specific behavior for action cards.
+ * <p>
+ * Extends the {@link Card} class and provides specific behavior for action cards, which have special effects when played.
  */
 public class ActionCard extends Card {
     /**
@@ -20,9 +21,10 @@ public class ActionCard extends Card {
     }
 
     /**
-     * Plays the action card. To be implemented.
+     * Plays the action card. Must be implemented to define the effect of playing an action card.
      *
-     * @return true if the play is valid, false otherwise
+     * @return true if the play is valid and successful, false otherwise
+     * @throws UnsupportedOperationException if not implemented
      */
     @Override
     public boolean play() {
