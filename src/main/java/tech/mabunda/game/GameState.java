@@ -26,10 +26,42 @@ public class GameState {
      * @param players the list of players participating in the game
      */
     public GameState(ArrayList<Player> players) {
+        this.players = players;
         this.deck = new Deck();
-        deck.deal(players);
-        currentPlayerIndex = 0;
-        direction = 1;
+        this.deck.deal(this.players);
+        this.currentPlayerIndex = 0;
+        this.direction = 1;
+        this.color = topDiscardPile().getColor();
+    }
+
+
+    /**
+     * Returns the top card of the draw pile.
+     *
+     * @return the top card of the draw pile
+     */
+    public Card topDrawPile() {
+        return deck.getDrawPile().get(deck.getDrawPile().size() - 1);
+    }
+
+
+    /**
+     * Returns the top card of the discard pile.
+     *
+     * @return the top card of the discard pile
+     */
+    public Card topDiscardPile() {
+        return deck.getDiscardPile().get(deck.getDiscardPile().size() - 1);
+    }
+
+
+    /**
+     * Gets the current penalty value, if any.
+     *
+     * @return the penalty value or null if no penalty is active
+     */
+    public String getPenalty() {
+        return penalty;
     }
 
 
