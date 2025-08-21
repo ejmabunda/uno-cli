@@ -31,7 +31,7 @@ public class ActionCard extends Card {
     @Override
     public boolean play(GameState state) {
         Player player = state.getCurrentPlayer();
-        if (!player.hasCard(this) || !this.match(state.topDiscardPile())) {
+        if (!player.hasCard(this) || !state.topDiscardPile().match(this)) {
             return false;
         }
 
