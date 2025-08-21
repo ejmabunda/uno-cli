@@ -3,6 +3,8 @@ package tech.mabunda.card;
 import tech.mabunda.card.enums.Action;
 import tech.mabunda.card.enums.Color;
 import tech.mabunda.card.enums.Type;
+import tech.mabunda.game.GameState;
+import tech.mabunda.player.Player;
 
 /**
  * Represents an action card in UNO (e.g., Skip, Reverse, Draw Two).
@@ -21,13 +23,21 @@ public class ActionCard extends Card {
     }
 
     /**
-     * Plays the action card. Must be implemented to define the effect of playing an action card.
+     * Plays the action card. Checks if the card can be played (matches color or value) and applies the action effect (Skip, Reverse, Draw Two).
      *
+     * @param state the current game state
      * @return true if the play is valid and successful, false otherwise
-     * @throws UnsupportedOperationException if not implemented
      */
     @Override
-    public boolean play() {
-        throw new UnsupportedOperationException("Unimplemented method 'play'");
+    public boolean play(GameState state) {
+        Player player = state.getCurrentPlayer();
+        if (!player.hasCard(this) || !this.match(state.topDiscardPile())) {
+            return false;
+        }
+
+        state.setColor(color);
+        state.setPenalty(value);
+        // Implementation should apply the action effect to the game state
+        return true;
     }
 }

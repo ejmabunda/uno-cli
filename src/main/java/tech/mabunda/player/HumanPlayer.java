@@ -24,7 +24,7 @@ public class HumanPlayer extends Player {
     /**
      * Prompts the human player to select and play a card from their hand.
      * <p>
-     * This method should be implemented to interact with the user and allow them to choose a card to play according to the game rules.
+     * This method should be implemented to interact with the user and allow them to choose a card to play according to the game rules. Typically, this will call the selected card's {@code play(GameState)} method.
      *
      * @return true if the play is valid and successful, false otherwise
      */

@@ -52,10 +52,14 @@ public abstract class Player {
         return hand;
     }
 
+    public boolean hasCard(Card card) {
+        return hand.getCards().contains(card);
+    }
+
     /**
      * Plays a card from the player's hand according to the game rules.
      * <p>
-     * This method must be implemented by subclasses to define how a player selects and plays a card.
+     * This method must be implemented by subclasses to define how a player selects and plays a card, typically by calling the card's {@link tech.mabunda.card.Card#play(GameState)} method.
      *
      * @return true if the play is valid and successful, false otherwise
      */

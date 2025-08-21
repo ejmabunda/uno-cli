@@ -106,8 +106,8 @@ public class GameState {
      *
      * @param card the card causing the penalty
      */
-    public void setPenalty(Card card) {
-        penalty = card.getValue();
+    public void setPenalty(String penalty) {
+        this.penalty = penalty;
     }
 
     /**

@@ -63,6 +63,10 @@ Standard Uno rules apply:
 - Call "Uno" when you have one card left
 - First player to empty their hand wins
 
+#### Card Play Logic
+
+Each card type implements a `play(GameState state)` method that defines its effect when played. This method is called by the player logic and updates the game state accordingly. See `src/main/java/tech/mabunda/card/README.md` for details.
+
 ## 🛠 Development
 
 ### Project Structure

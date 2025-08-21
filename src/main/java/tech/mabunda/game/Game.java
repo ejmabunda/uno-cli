@@ -1,7 +1,10 @@
 package tech.mabunda.game;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
+import tech.mabunda.card.Card;
+import tech.mabunda.card.enums.Type;
 import tech.mabunda.player.HumanPlayer;
 import tech.mabunda.player.Player;
 
@@ -16,6 +19,8 @@ public class Game {
      * The current state of the game, including players, deck, and turn order.
      */
     private GameState state;
+
+    private Scanner scanner = new Scanner(System.in);
 
     /**
      * Constructs a new Game instance.
@@ -65,10 +70,16 @@ public class Game {
 
         // Main game loop, continues until only 1 player left
         Player player;
+        String move;
+        Card card;
         while (this.state.getPlayers().size() > 1) {
             player = this.state.getCurrentPlayer();
-
+            
             // TODO: Process player's move
+            System.out.print(player.getName() + ", what's your move? ");
+            move = scanner.nextLine();
+
+            // TODO: Setup a protocol
 
             // TODO: Update game state
 
