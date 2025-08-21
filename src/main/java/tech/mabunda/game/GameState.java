@@ -10,14 +10,36 @@ import tech.mabunda.player.Player;
 /**
  * Manages the state of an UNO game, including players, deck, turn order, color, and penalties.
  */
+/**
+ * Manages the state of an UNO game, including players, deck, turn order, color, and penalties.
+ * <p>
+ * This class provides methods to access and update the current state of the game, such as the current player, direction, and penalties.
+ */
 public class GameState {
+    /**
+     * The list of players in the game.
+     */
     private ArrayList<Player> players;
+    /**
+     * The deck of UNO cards used in the game.
+     */
     private Deck deck;
+    /**
+     * The index of the current player in the players list.
+     */
     private int currentPlayerIndex;
+    /**
+     * The direction of play (1 for clockwise, -1 for counterclockwise).
+     */
     private int direction;
+    /**
+     * The current color in play.
+     */
     private Color color;
+    /**
+     * The current penalty value, if any.
+     */
     private String penalty;
-
 
     /**
      * Initializes the game state with the given players, creates a deck, and deals cards.
@@ -34,7 +56,6 @@ public class GameState {
         this.color = topDiscardPile().getColor();
     }
 
-
     /**
      * Returns the top card of the draw pile.
      *
@@ -43,7 +64,6 @@ public class GameState {
     public Card topDrawPile() {
         return deck.getDrawPile().get(deck.getDrawPile().size() - 1);
     }
-
 
     /**
      * Returns the top card of the discard pile.
@@ -54,7 +74,6 @@ public class GameState {
         return deck.getDiscardPile().get(deck.getDiscardPile().size() - 1);
     }
 
-
     /**
      * Gets the current penalty value, if any.
      *
@@ -63,7 +82,6 @@ public class GameState {
     public String getPenalty() {
         return penalty;
     }
-
 
     /**
      * Returns the list of players in the game.
@@ -74,7 +92,6 @@ public class GameState {
         return players;
     }
 
-
     /**
      * Returns the player whose turn it currently is.
      *
@@ -84,16 +101,14 @@ public class GameState {
         return players.get(currentPlayerIndex);
     }
 
-
     /**
      * Sets a penalty based on the given card's value.
      *
      * @param card the card causing the penalty
      */
-    public void setPenalty(Card card) {
-        penalty = card.getValue();
+    public void setPenalty(String penalty) {
+        this.penalty = penalty;
     }
-
 
     /**
      * Removes any active penalty from the game state.
@@ -101,7 +116,6 @@ public class GameState {
     public void removePenalty() {
         penalty = null;
     }
-
 
     /**
      * Sets the current color in play.
@@ -112,14 +126,12 @@ public class GameState {
         this.color = color;
     }
 
-
     /**
      * Reverses the direction of play (e.g., for a reverse card).
      */
     public void updateDirection() {
         this.direction *= -1;
     }
-
 
     /**
      * Advances the turn to the next player, considering the current direction.

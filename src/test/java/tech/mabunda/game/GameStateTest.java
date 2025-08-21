@@ -1,8 +1,5 @@
 package tech.mabunda.game;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
@@ -12,6 +9,8 @@ import tech.mabunda.card.enums.Color;
 import tech.mabunda.card.enums.Type;
 import tech.mabunda.player.HumanPlayer;
 import tech.mabunda.player.Player;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Unit tests for the {@link GameState} class, verifying initialization and core game state behaviors.
@@ -29,10 +28,10 @@ public class GameStateTest {
 
         GameState state = new GameState(players);
         assertEquals(3, state.getPlayers().size());
-        assertEquals(null, state.getPenalty());
+        assertNull(state.getPenalty());
 
         Card drawTwoCard = Card.create(Type.ACTION, "draw two", Color.YELLOW);
-        state.setPenalty(drawTwoCard);
+        state.setPenalty(drawTwoCard.getValue());
         assertEquals("DRAW_TWO", state.getPenalty());
         assertNotNull(state.topDiscardPile());
     }

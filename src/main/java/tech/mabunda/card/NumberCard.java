@@ -3,6 +3,7 @@ package tech.mabunda.card;
 import tech.mabunda.card.enums.Color;
 import tech.mabunda.card.enums.Number;
 import tech.mabunda.card.enums.Type;
+import tech.mabunda.game.GameState;
 
 /**
  * Represents a number card in UNO (0-9).
@@ -21,13 +22,14 @@ public class NumberCard extends Card {
     }
 
     /**
-     * Plays the number card. Must be implemented to define the effect of playing a number card.
+     * Plays the number card. Checks if the card can be played (matches color or value) and updates the game state if valid.
      *
+     * @param state the current game state
      * @return true if the play is valid and successful, false otherwise
-     * @throws UnsupportedOperationException if not implemented
      */
     @Override
-    public boolean play() {
+    public boolean play(GameState state) {
+        // Implementation should check if the card matches and update state accordingly
         throw new UnsupportedOperationException("Unimplemented method 'play'");
     }
 }

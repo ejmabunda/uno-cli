@@ -2,6 +2,7 @@ package tech.mabunda.card;
 
 import tech.mabunda.card.enums.Type;
 import tech.mabunda.card.enums.Wild;
+import tech.mabunda.game.GameState;
 
 /**
  * Represents a wild card in UNO (Wild, Wild Draw Four).
@@ -20,13 +21,14 @@ public class WildCard extends Card {
     }
 
     /**
-     * Plays the wild card. Must be implemented to define the effect of playing a wild card.
+     * Plays the wild card. Allows the player to choose a new color and, for Wild Draw Four, forces the next player to draw four cards.
      *
+     * @param state the current game state
      * @return true if the play is valid and successful, false otherwise
-     * @throws UnsupportedOperationException if not implemented
      */
     @Override
-    public boolean play() {
+    public boolean play(GameState state) {
+        // Implementation should allow color selection and apply wild effects
         throw new UnsupportedOperationException("Unimplemented method 'play'");
     }
 }

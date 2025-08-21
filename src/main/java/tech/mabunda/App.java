@@ -1,5 +1,7 @@
 package tech.mabunda;
 
+import tech.mabunda.game.Game;
+
 /**
  * Entry point for the UNO CLI application.
  * <p>
@@ -10,11 +12,12 @@ public class App {
     /**
      * Main method to start the UNO CLI application.
      * <p>
-     * This method initializes the application and starts the game.
+     * Initializes the application and starts the UNO game loop.
      *
-     * @param args command-line arguments
+     * @param args command-line arguments (not used)
      */
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        Game game = new Game();
+        game.start();
     }
 }

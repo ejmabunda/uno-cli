@@ -100,5 +100,20 @@
         </plugin>
       </plugins>
     </pluginManagement>
+
+    <plugins>
+      <plugin>
+	<groupId>org.codehaus.mojo
+	</groupId>
+	<artifactId>exec-maven-plugin
+	</artifactId>
+	<version>3.5.1
+	</version>
+      <configuration>
+        <mainClass>tech.mabunda.App
+	</mainClass>
+      </configuration>
+    </plugin>
+    </plugins>
   </build>
 </project>

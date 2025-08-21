@@ -8,12 +8,13 @@ import tech.mabunda.card.enums.Color;
 import tech.mabunda.card.enums.Number;
 import tech.mabunda.card.enums.Type;
 import tech.mabunda.card.enums.Wild;
+import tech.mabunda.game.GameState;
 
 /**
  * Abstract base class for all UNO cards.
  * <p>
  * Provides common properties and methods for UNO cards, including type, value, and color.
- * Subclasses must implement the {@link #play()} method to define card-specific play behavior.
+ * Subclasses must implement the {@link #play(GameState)} method to define card-specific play behavior.
  */
 public abstract class Card {
     /**
@@ -23,11 +24,11 @@ public abstract class Card {
     /**
      * The value of the card (e.g., ONE, SKIP, WILD_DRAW_FOUR).
      */
-    private String value;
+    protected String value;
     /**
      * The color of the card (RED, GREEN, BLUE, YELLOW), or null for wild cards.
      */
-    private Color color;
+    protected Color color;
 
     /**
      * Constructs a card with the specified type, value, and color.
@@ -96,9 +97,10 @@ public abstract class Card {
     /**
      * Plays the card. Must be implemented by subclasses to define card-specific play logic.
      *
+     * @param state the current game state
      * @return true if the play is valid and successful, false otherwise
      */
-    public abstract boolean play();
+    public abstract boolean play(GameState state);
 
     /**
      * Factory method to create a card of the specified type, value, and color.
