@@ -1,6 +1,7 @@
 package tech.mabunda.card;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
@@ -35,8 +36,16 @@ class ActionCardTest {
         players.add(new HumanPlayer("player 0"));
         GameState state = new GameState(players);
         Card topDiscard = state.getDeck().getDiscardPile().get(state.getDeck().getDiscardPile().size() - 1);
-        Card blueActionCard = Card.create(Type.ACTION, "skip", topDiscard.getColor());
+        Card actionCard = Card.create(Type.ACTION, "skip", topDiscard.getColor());
+        
+        Card anotherActionCard;
+        if (actionCard.getColor().equals(Color.BLUE)) {
+            anotherActionCard = Card.create(Type.ACTION, "reverse", Color.YELLOW);
+        } else {
+            anotherActionCard = Card.create(Type.ACTION, "reverse", Color.BLUE);
+        }
 
-        assertTrue(blueActionCard.play(state));
+        assertTrue(actionCard.play(state));
+        assertFalse(anotherActionCard.play(state));
     }
 }
