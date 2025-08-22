@@ -44,7 +44,7 @@ UnoCLI brings the beloved Uno card game experience to your terminal. Play agains
    ```
 
 3. Run the game:
-<b>Note:</b> Only human players are currently supported. AI and network multiplayer are planned for future updates. Game statistics and custom rules are not yet implemented.
+**Note:** Only human players are currently supported. AI and network multiplayer are planned for future updates. Game statistics and custom rules are not yet implemented.
 ## 🎮 How to Play
 
 1. Start the game and select number of players
