@@ -9,7 +9,7 @@ This document describes the different card types in UnoCLI and the behavior of t
 - **ActionCard**: Represents action cards (Skip, Reverse, Draw Two). Implements `play` to apply special effects.
 - **WildCard**: Represents wild cards (Wild, Wild Draw Four). Implements `play` to allow color change or force draws.
 
-<b>Note:</b> Only human players are currently implemented. AI players are planned for future updates.
+**Note:** Only human players are currently implemented. AI players are planned for future updates.
 
 ## The `play(GameState state)` Method
 
