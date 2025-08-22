@@ -43,7 +43,7 @@ public class HumanPlayer extends Player {
      */
     @Override
     public boolean drawCard(Deck deck) {
-        hand.add_card(deck.draw_card());
+        hand.addCard(deck.drawCard());
         return true;
     }
 }

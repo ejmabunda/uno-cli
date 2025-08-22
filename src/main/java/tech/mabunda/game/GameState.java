@@ -56,6 +56,10 @@ public class GameState {
         this.color = topDiscardPile().getColor();
     }
 
+    public Deck getDeck() {
+        return deck;
+    }
+
     /**
      * Returns the top card of the draw pile.
      *

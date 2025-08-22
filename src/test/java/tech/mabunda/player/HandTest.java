@@ -16,10 +16,10 @@ public class HandTest {
 
         Card redReverse = Card.create(Type.ACTION, "reverse", Color.RED);
         
-        human.getHand().add_card(redReverse);
+        human.getHand().addCard(redReverse);
         assertEquals(1, human.getHand().size());
 
-        human.getHand().remove_card(redReverse);
+        human.getHand().removeCard(redReverse);
         assertEquals(0, human.getHand().size());
     }
 }

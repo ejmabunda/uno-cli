@@ -3,17 +3,19 @@ package tech.mabunda.game;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import tech.mabunda.card.Card;
 import tech.mabunda.player.HumanPlayer;
 import tech.mabunda.player.Player;
 
 /**
  * Manages the main UNO game loop and setup.
  * <p>
- * This class is responsible for initializing the game, creating players (currently only human players), and running the main game loop.
- * It interacts with the {@link GameState} to manage the current state of the game.
+ * This class is responsible for initializing the game, creating players
+ * (currently only human players), and running the main game loop.
+ * It interacts with the {@link GameState} to manage the current state of the
+ * game.
  * <p>
- * <b>Note:</b> The main game logic and move processing are under development. AI and networked players are planned but not yet implemented.
+ * <b>Note:</b> The main game logic and move processing are under development.
+ * AI and networked players are planned but not yet implemented.
  */
 public class Game {
     /**
@@ -29,7 +31,8 @@ public class Game {
     /**
      * Constructs a new Game instance.
      * <p>
-     * Initializes the game object. The actual game state is set up in {@link #init()}.
+     * Initializes the game object. The actual game state is set up in
+     * {@link #init()}.
      */
     public Game() {
         this.minPlayers = 2;
@@ -39,7 +42,8 @@ public class Game {
     /**
      * Creates and returns a list of players for the game.
      * <p>
-     * Currently, only human players are supported. By default, creates one human player named "player 0" and the rest as human players with incremented names.
+     * Currently, only human players are supported. By default, creates one human
+     * player named "player 0" and the rest as human players with incremented names.
      *
      * @param numPlayers the number of players to create
      * @return a list of Player objects (all human players)
@@ -54,7 +58,8 @@ public class Game {
     }
 
     /**
-     * Initializes the game state, including creating players and setting up the deck.
+     * Initializes the game state, including creating players and setting up the
+     * deck.
      * <p>
      * This method should be called before starting the game loop.
      */
@@ -66,8 +71,10 @@ public class Game {
     /**
      * Starts the main UNO game loop.
      * <p>
-     * Sets up the game state and repeatedly processes player turns until only one player remains.
-     * <b>Note:</b> The actual move processing and state updates are not yet implemented and are marked as TODO for future development.
+     * Sets up the game state and repeatedly processes player turns until only one
+     * player remains.
+     * <b>Note:</b> The actual move processing and state updates are not yet
+     * implemented and are marked as TODO for future development.
      */
     public void start() {
         // Setup game state, including players, the deck and penalties
@@ -78,8 +85,11 @@ public class Game {
         while (this.state.getPlayers().size() > 1) {
             player = this.state.getCurrentPlayer();
             // Player has won, go to next
-            if (player.getHand().getCards().isEmpty()) { this.state.updatePlayer(); continue; }
-            
+            if (player.getHand().getCards().isEmpty()) {
+                this.state.updatePlayer();
+                continue;
+            }
+
             // TODO: Process player's move
 
             // TODO: Setup a protocol
