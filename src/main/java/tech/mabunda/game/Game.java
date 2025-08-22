@@ -78,7 +78,7 @@ public class Game {
         while (this.state.getPlayers().size() > 1) {
             player = this.state.getCurrentPlayer();
             // Player has won, go to next
-            if (player.getHand().getCards().isEmpty()) { continue; }
+            if (player.getHand().getCards().isEmpty()) { this.state.updatePlayer(); continue; }
             
             // TODO: Process player's move
 
