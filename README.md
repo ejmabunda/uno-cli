@@ -38,7 +38,6 @@ UnoCLI brings the beloved Uno card game experience to your terminal. Play agains
    cd UnoCLI
    ```
 
-│   └── // ...existing code...
 
    ```bash
    mvn clean compile
