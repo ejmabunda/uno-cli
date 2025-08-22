@@ -8,12 +8,12 @@ UnoCLI brings the beloved Uno card game experience to your terminal. Play agains
 
 ## ✨ Features
 
-- **Full Uno Gameplay**: All standard Uno rules and card types
-- **Multiplayer Support**: Play with 2-10 players (mix of human and AI players)
-- **Interactive CLI**: Clean, intuitive command-line interface
-- **Smart AI Players**: Multiple difficulty levels for AI opponents
-- **Game Statistics**: Track wins, losses, and gameplay statistics
-- **Custom Rules**: Optional house rules and game variations
+ **Full Uno Gameplay**: All standard Uno rules and card types (core mechanics in progress)
+ **Multiplayer Support**: Play with 2-10 human players (AI and network play planned)
+ **Interactive CLI**: Clean, intuitive command-line interface
+ **AI Players**: Planned for future releases
+ **Game Statistics**: Planned feature
+ **Custom Rules**: Planned feature
 
 ## 🚀 Getting Started
 
@@ -21,6 +21,13 @@ UnoCLI brings the beloved Uno card game experience to your terminal. Play agains
 
 - Java 17 or higher
 - Maven 3.6+
+1. Start the game and select number of players
+2. Choose player names
+3. Follow the on-screen prompts to play cards
+4. Use special commands:
+   - `help` - Show available commands
+   - `hand` - View your current hand
+   - `quit` - Exit the game
 
 ### Installation
 
@@ -31,18 +38,14 @@ UnoCLI brings the beloved Uno card game experience to your terminal. Play agains
    cd UnoCLI
    ```
 
-2. Build the project:
+│   └── // ...existing code...
 
    ```bash
    mvn clean compile
    ```
 
 3. Run the game:
-
-   ```bash
-   mvn exec:java -Dexec.mainClass="tech.mabunda.App"
-   ```
-
+<b>Note:</b> Only human players are currently supported. AI and network multiplayer are planned for future updates. Game statistics and custom rules are not yet implemented.
 ## 🎮 How to Play
 
 1. Start the game and select number of players

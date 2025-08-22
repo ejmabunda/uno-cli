@@ -28,12 +28,15 @@ public class Deck {
      */
     private ArrayList<Card> discard_pile;
 
+    private int maxStartingCards;
+
     /**
      * Constructs a new deck with all UNO cards and shuffles the draw pile.
      * <p>
      * The deck consists of number, action, and wild cards as per UNO rules.
      */
     public Deck() {
+        this.maxStartingCards = 7;
         draw_pile = new ArrayList<>();
         draw_pile.addAll(getNumberCards());
         draw_pile.addAll(getActionCards());
@@ -73,10 +76,9 @@ public class Deck {
      * @param players the list of players to deal cards to
      */
     public void deal(ArrayList<Player> players) {
-        int numCards = 7;
         // Deal 7 cards to each player
         for (Player player: players) {
-            for (int i = 0; i < numCards; i++) {
+            for (int i = 0; i < maxStartingCards; i++) {
                 player.drawCard(this);
             }
         }
