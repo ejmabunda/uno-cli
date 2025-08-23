@@ -78,6 +78,50 @@ public class Game {
         return state;
     }
 
+    public void displayPrompt() {
+        Player player = state.getCurrentPlayer();
+        System.out.println("It's " + player.getName() + "'s turn!");
+        System.out.println("The top card is " + state.topDiscardPile());
+        System.out.print("Your hand:\n\t-> ");
+
+        for (Card card : player.getHand().getCards()) {
+            System.out.print(card + ", ");
+        }
+
+        System.out.print("\nWhat's your move? ");
+    }
+
+    private boolean handleCommand() {
+        Player player = state.getCurrentPlayer();
+        String command;
+        boolean cardPlayed = false;
+
+        do {
+            displayPrompt();
+            command = sc.nextLine().toUpperCase();
+
+            if (command.equals("DRAW")) {
+                player.getHand().addCard(state.getDeck().drawCard());
+                System.out.println(">>> [OK] " + player.getName() + " drew a card.");
+                return true;
+            }
+
+            Card cardToPlay = Card.create(command);
+
+            if (cardToPlay == null || !player.hasCard(cardToPlay)) {
+                System.out.println(">>> [ERROR] Invalid choice, try again!");
+                continue;
+            }
+
+            cardPlayed = cardToPlay.play(state);
+            if (cardPlayed) {
+                System.out.println(">>> [OK] " + player.getName() + " played " + cardToPlay + "\n");
+            }
+        } while (!cardPlayed);
+
+        return true;
+    }
+
     /**
      * Starts the main UNO game loop.
      * <p>
@@ -88,15 +132,20 @@ public class Game {
      */
     public void start() {
         sc = new Scanner(System.in);
+        String command;
+        Player player;
 
         while (state.getPlayers().size() > 1) {
+            player = state.getCurrentPlayer();
+
             // Check win status or penalty, skip player if either is true
             if (state.isWinner() || state.handlePenalty()) {
                 state.updatePlayer();
                 continue;
             }
 
-            // TODO: Process player's move
+            // Process player's move
+            handleCommand();
 
             state.updatePlayer();
         }

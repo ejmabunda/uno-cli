@@ -44,7 +44,9 @@ class ActionCardTest {
         } else {
             anotherActionCard = Card.create("blue reverse");
         }
-
+        
+        state.getCurrentPlayer().getHand().addCard(actionCard);
+        state.getCurrentPlayer().getHand().addCard(anotherActionCard);
         assertTrue(actionCard.play(state));
         assertFalse(anotherActionCard.play(state));
     }

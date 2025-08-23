@@ -2,7 +2,6 @@ package tech.mabunda.card;
 
 import tech.mabunda.card.enums.Type;
 import tech.mabunda.card.enums.Wild;
-import tech.mabunda.game.GameState;
 
 /**
  * Represents a wild card in UNO (Wild, Wild Draw Four).
@@ -18,18 +17,5 @@ public class WildCard extends Card {
      */
     public WildCard(Wild value) {
         super(Type.WILD, value.toString(), null);
-    }
-
-    /**
-     * Plays the wild card. Allows the player to choose a new color and, for Wild Draw Four, forces the next player to draw four cards.
-     *
-     * @param state the current game state
-     * @return true if the play is valid and successful, false otherwise
-     */
-    @Override
-    public boolean play(GameState state) {
-        state.setPenalty(value);
-        
-        return true;
     }
 }

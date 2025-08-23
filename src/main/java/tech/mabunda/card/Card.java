@@ -9,6 +9,7 @@ import tech.mabunda.card.enums.Number;
 import tech.mabunda.card.enums.Type;
 import tech.mabunda.card.enums.Wild;
 import tech.mabunda.game.GameState;
+import tech.mabunda.player.Player;
 
 /**
  * Abstract base class for all UNO cards.
@@ -104,7 +105,28 @@ public abstract class Card {
      * @param state the current game state
      * @return true if the play is valid and successful, false otherwise
      */
-    public abstract boolean play(GameState state);
+    public boolean play(GameState state) {
+        Player player = state.getCurrentPlayer();
+
+        if (player.hasCard(this)) {
+            if (state.topDiscardPile().match(this)) {
+                if (value.equals("SKIP") || value.equals("DRAW_TWO") || value.equals("WILD_DRAW_FOUR")) {
+                    state.setPenalty(value);
+                } else if (value.equals("REVERSE")) {
+                    state.updateDirection();
+                } else if (value.equals("WILD")) {
+                    state.setColor(Color.RED);
+                }
+                return true;
+            } else {
+                System.out.println("Cannot play " + this + " on " + state.topDiscardPile());
+                return false;
+            }
+        }
+        System.out.println(player.getName() + " doesnt have this card. " + this);
+        System.out.println(player.toString());
+        return false;
+    }
 
     /**
      * Factory method to create a card of the specified type, value, and color.
@@ -131,7 +153,7 @@ public abstract class Card {
         } catch (IllegalArgumentException iae) {
             try {
                 if (name.contains("DRAW")) {
-                    
+
                     return new ActionCard(Action.valueOf("DRAW_TWO"), Color.valueOf(tokens[0]));
                 }
                 return new ActionCard(Action.valueOf(tokens[1]), Color.valueOf(tokens[0]));

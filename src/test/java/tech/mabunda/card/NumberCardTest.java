@@ -39,6 +39,7 @@ class NumberCardTest {
         Card topDiscard = state.getDeck().getDiscardPile().get(state.getDeck().getDiscardPile().size() - 1);
         Card numberCard = Card.create(topDiscard.getColor() + " seven");
 
+        state.getCurrentPlayer().getHand().addCard(numberCard);
         assertTrue(numberCard.play(state));
     }
 }
