@@ -28,7 +28,8 @@ public class WildCard extends Card {
      */
     @Override
     public boolean play(GameState state) {
-        // Implementation should allow color selection and apply wild effects
-        throw new UnsupportedOperationException("Unimplemented method 'play'");
+        state.setPenalty(value);
+        
+        return true;
     }
 }

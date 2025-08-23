@@ -57,15 +57,6 @@ public abstract class Player {
     }
 
     /**
-     * Plays a card from the player's hand according to the game rules.
-     * <p>
-     * This method must be implemented by subclasses to define how a player selects and plays a card, typically by calling the card's {@link tech.mabunda.card.Card#play(GameState)} method.
-     *
-     * @return true if the play is valid and successful, false otherwise
-     */
-    public abstract boolean playCard();
-
-    /**
      * Draws a card and adds it to the player's hand.
      * <p>
      * This method must be implemented by subclasses to define how a player draws a card from the deck.

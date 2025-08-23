@@ -1,7 +1,6 @@
 package tech.mabunda.game;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import tech.mabunda.player.HumanPlayer;
 import tech.mabunda.player.Player;
@@ -23,10 +22,11 @@ public class Game {
      */
     private GameState state;
 
-    private Scanner scanner = new Scanner(System.in);
+    private int minPlayers = 2;
 
-    private int minPlayers;
-    private int maxPlayers;
+    private int maxPlayers = 10;
+
+    private int numPlayers;
 
     /**
      * Constructs a new Game instance.
@@ -34,9 +34,21 @@ public class Game {
      * Initializes the game object. The actual game state is set up in
      * {@link #init()}.
      */
+    public Game(int numPlayers) {
+        if (numPlayers < minPlayers) {
+            System.out.println("Uno can host only 2-10 players.\nCreating game with " + minPlayers + " players.");
+            numPlayers = minPlayers;
+        }
+        else if (numPlayers > maxPlayers) {
+            System.out.println("Uno can host only 2-10 players.\nCreating game with " + maxPlayers + " players.");
+            numPlayers = maxPlayers;
+        }
+        this.numPlayers = numPlayers;
+        this.state = new GameState(getPlayers());
+    }
+
     public Game() {
-        this.minPlayers = 2;
-        this.maxPlayers = 10;
+        this(2);
     }
 
     /**
@@ -48,7 +60,7 @@ public class Game {
      * @param numPlayers the number of players to create
      * @return a list of Player objects (all human players)
      */
-    private ArrayList<Player> getPlayers(int numPlayers) {
+    public ArrayList<Player> getPlayers() {
         ArrayList<Player> players = new ArrayList<>();
         players.add(new HumanPlayer("player 0"));
         for (int i = 1; i < numPlayers; i++) {
@@ -57,15 +69,8 @@ public class Game {
         return players;
     }
 
-    /**
-     * Initializes the game state, including creating players and setting up the
-     * deck.
-     * <p>
-     * This method should be called before starting the game loop.
-     */
-    private void init() {
-        ArrayList<Player> players = getPlayers(minPlayers);
-        this.state = new GameState(players);
+    public GameState getState() {
+        return state;
     }
 
     /**
@@ -77,9 +82,6 @@ public class Game {
      * implemented and are marked as TODO for future development.
      */
     public void start() {
-        // Setup game state, including players, the deck and penalties
-        init();
-
         // Main game loop, continues until only 1 player left.. the loser
         Player player;
         while (this.state.getPlayers().size() > 1) {

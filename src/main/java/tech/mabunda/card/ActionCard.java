@@ -4,7 +4,6 @@ import tech.mabunda.card.enums.Action;
 import tech.mabunda.card.enums.Color;
 import tech.mabunda.card.enums.Type;
 import tech.mabunda.game.GameState;
-import tech.mabunda.player.Player;
 
 /**
  * Represents an action card in UNO (e.g., Skip, Reverse, Draw Two).
@@ -34,9 +33,8 @@ public class ActionCard extends Card {
             return false;
         }
 
-        state.setColor(color);
         state.setPenalty(value);
-        // Implementation should apply the action effect to the game state
+        
         return true;
     }
 }
