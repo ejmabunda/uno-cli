@@ -17,7 +17,7 @@ import tech.mabunda.player.Player;
 class ActionCardTest {
     @Test
     void testCardInit() {
-        Card blueReverseCard = Card.create(Type.ACTION, "REVERSE", Color.BLUE);
+        Card blueReverseCard = Card.create("blue reverse");
         assertEquals(Type.ACTION, blueReverseCard.getType());
         assertEquals("REVERSE", blueReverseCard.getValue());
         assertEquals(Color.BLUE, blueReverseCard.getColor());
@@ -25,8 +25,8 @@ class ActionCardTest {
 
     @Test
     void testCardComparison() {
-        Card blueReverseCard = Card.create(Type.ACTION, "REVERSE", Color.BLUE);
-        Card anotherBlueReverseCard = Card.create(Type.ACTION, "reverse", Color.BLUE);
+        Card blueReverseCard = Card.create("blue reverse");
+        Card anotherBlueReverseCard = Card.create("blue reverse");
         assertEquals(blueReverseCard, anotherBlueReverseCard);
     }
 
@@ -36,13 +36,13 @@ class ActionCardTest {
         players.add(new HumanPlayer("player 0"));
         GameState state = new GameState(players);
         Card topDiscard = state.getDeck().getDiscardPile().get(state.getDeck().getDiscardPile().size() - 1);
-        Card actionCard = Card.create(Type.ACTION, "skip", topDiscard.getColor());
+        Card actionCard = Card.create(topDiscard.getColor() + " skip");
         
         Card anotherActionCard;
         if (actionCard.getColor().equals(Color.BLUE)) {
-            anotherActionCard = Card.create(Type.ACTION, "reverse", Color.YELLOW);
+            anotherActionCard = Card.create("yellow reverse");
         } else {
-            anotherActionCard = Card.create(Type.ACTION, "reverse", Color.BLUE);
+            anotherActionCard = Card.create("blue reverse");
         }
 
         assertTrue(actionCard.play(state));

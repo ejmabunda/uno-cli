@@ -13,8 +13,10 @@ import tech.mabunda.game.GameState;
 /**
  * Abstract base class for all UNO cards.
  * <p>
- * Provides common properties and methods for UNO cards, including type, value, and color.
- * Subclasses must implement the {@link #play(GameState)} method to define card-specific play behavior.
+ * Provides common properties and methods for UNO cards, including type, value,
+ * and color.
+ * Subclasses must implement the {@link #play(GameState)} method to define
+ * card-specific play behavior.
  */
 public abstract class Card {
     /**
@@ -46,7 +48,8 @@ public abstract class Card {
     /**
      * Determines if this card matches another card according to UNO rules.
      * <p>
-     * A card matches if it is the same card, or if the type, color, or value matches, or if the other card is a wild card.
+     * A card matches if it is the same card, or if the type, color, or value
+     * matches, or if the other card is a wild card.
      *
      * @param card the card to compare against
      * @return true if the cards match, false otherwise
@@ -95,7 +98,8 @@ public abstract class Card {
     }
 
     /**
-     * Plays the card. Must be implemented by subclasses to define card-specific play logic.
+     * Plays the card. Must be implemented by subclasses to define card-specific
+     * play logic.
      *
      * @param state the current game state
      * @return true if the play is valid and successful, false otherwise
@@ -110,36 +114,39 @@ public abstract class Card {
      * @param color the color of the card (null for wild cards)
      * @return a new Card instance or null if invalid
      */
-    public static Card create(Type type, String value, Color color) {
-        value = value.replace(" ", "_").toUpperCase();
-        return switch (type) {
-            case NUMBER -> {
-                Number number = Number.valueOf(value);
-                List<Number> values = Arrays.asList(Number.values());
-                yield values.contains(number) ? new NumberCard(number, color) : null;
+    public static Card create(String name) {
+        name = name.toUpperCase();
+
+        if (name.contains("WILD")) {
+            try {
+                return new WildCard(Wild.valueOf(name.toUpperCase().replace(" ", "_")));
+            } catch (IllegalArgumentException e) {
+                return null;
             }
-            case ACTION -> {
-                Action action = Action.valueOf(value);
-                List<Action> values = Arrays.asList(Action.values());
-                yield values.contains(action) ? new ActionCard(action, color) : null;
+        }
+
+        String tokens[] = name.split(" ");
+        try {
+            return new NumberCard(Number.valueOf(tokens[1]), Color.valueOf(tokens[0]));
+        } catch (IllegalArgumentException iae) {
+            try {
+                if (name.contains("DRAW")) {
+                    
+                    return new ActionCard(Action.valueOf("DRAW_TWO"), Color.valueOf(tokens[0]));
+                }
+                return new ActionCard(Action.valueOf(tokens[1]), Color.valueOf(tokens[0]));
+            } catch (Exception e) {
+                return null;
             }
-            case WILD -> {
-                Wild wild = Wild.valueOf(value);
-                List<Wild> values = Arrays.asList(Wild.values());
-                yield values.contains(wild) ? new WildCard(wild) : null;
-            }
-        };
+        }
     }
 
-    /**
-     * Factory method to create a card of the specified type and value (for wild cards).
-     *
-     * @param type  the type of the card (should be WILD)
-     * @param value the value of the card (e.g., WILD, WILD_DRAW_FOUR)
-     * @return a new Card instance or null if invalid
-     */
-    public static Card create(Type type, String value) {
-        return create(type, value, null);
+    public String toString() {
+        if (type == Type.NUMBER || type == Type.ACTION) {
+            return (color.toString() + " " + value.replace("_", " ")).toLowerCase();
+        } else {
+            return value.replace("_", " ").toLowerCase();
+        }
     }
 
     /**

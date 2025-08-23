@@ -30,7 +30,7 @@ public class GameStateTest {
         assertEquals(3, state.getPlayers().size());
         assertNull(state.getPenalty());
 
-        Card drawTwoCard = Card.create(Type.ACTION, "draw two", Color.YELLOW);
+        Card drawTwoCard = Card.create("yellow draw two");
         state.setPenalty(drawTwoCard.getValue());
         assertEquals("DRAW_TWO", state.getPenalty());
         assertNotNull(state.topDiscardPile());

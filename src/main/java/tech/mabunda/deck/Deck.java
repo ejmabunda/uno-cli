@@ -142,7 +142,7 @@ public class Deck {
         for (int a = 0; a < 2; a++) {
             for (Color color : Color.values()) {
                 for (Number number : Number.values()) {
-                    Card numberCard = Card.create(Type.NUMBER, number.toString(), color);
+                    Card numberCard = Card.create(color + " " + number.toString());
                     if (number.equals(Number.ZERO) && numberCards.contains(numberCard)) {
                         continue;
                     } else {
