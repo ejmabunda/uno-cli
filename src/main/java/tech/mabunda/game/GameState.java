@@ -54,6 +54,7 @@ public class GameState {
         this.currentPlayerIndex = 0;
         this.direction = 1;
         this.color = topDiscardPile().getColor();
+        this.penalty = "";
     }
 
     public Deck getDeck() {
@@ -118,7 +119,7 @@ public class GameState {
      * Removes any active penalty from the game state.
      */
     public void removePenalty() {
-        penalty = null;
+        penalty = "";
     }
 
     /**
