@@ -90,7 +90,7 @@ public class Game {
         sc = new Scanner(System.in);
 
         while (state.getPlayers().size() > 1) {
-            // Check win status or penalty, skip if either is true
+            // Check win status or penalty, skip player if either is true
             if (state.isWinner() || state.handlePenalty()) {
                 state.updatePlayer();
                 continue;

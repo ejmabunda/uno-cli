@@ -23,8 +23,6 @@ public class GameState {
      */
     private ArrayList<Player> players;
 
-    private ArrayList<Player> winners;
-
     /**
      * The deck of UNO cards used in the game.
      */
@@ -55,7 +53,6 @@ public class GameState {
      */
     public GameState(ArrayList<Player> players) {
         this.players = players;
-        this.winners = new ArrayList<>();
         this.deck = new Deck();
         this.deck.deal(this.players);
         this.currentPlayerIndex = 0;
