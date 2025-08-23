@@ -78,13 +78,8 @@ public class Game {
         return state;
     }
 
-    public Card validateCommand(String command) {
-        command = command.toLowerCase();
-        if (command.equals("draw")) {
-            return state.getDeck().drawCard();
-        }
-
-        return Card.create(command);
+    private boolean hasCards() {
+        return state.getCurrentPlayer().getHand().size() >= 1; 
     }
 
     /**
@@ -98,49 +93,19 @@ public class Game {
     public void start() {
         sc = new Scanner(System.in);
 
-        // Main game loop, continues until only 1 player left.. the loser
         Player player;
-        Card card;
-        String penalty;
-        String command;
 
-        while (this.state.getPlayers().size() > 1) {
-            player = this.state.getCurrentPlayer();
-            // Player has won, go to next
-            if (player.getHand().getCards().isEmpty()) {
-                this.state.updatePlayer();
-                continue;
-            }
+        while (state.getPlayers().size() > 1) {
+            player = state.getCurrentPlayer();
 
-            // Handle penalties
-            penalty = state.getPenalty();
-            if (!penalty.isEmpty()) {
-                if (penalty.equals("skip")) {
-                    System.out.println("Skipping " + player.getName());
-                    state.removePenalty();
-                    continue;
-                }
-                else if (penalty.equals("draw two")) {
-                    state.getDeck().drawCard();
-                    state.getDeck().drawCard();
-                }
-                else {
-                    System.out.println("Unknown penalty " + penalty + " ignoring.");
-                }
-            }
+            // TODO: Check win status
+            if (!hasCards()) { state.updatePlayer(); continue; }
 
-            // Process player's move
-            do {
-                System.out.println(player.toString());
-                System.out.print("What's your move? ");
-                command = sc.nextLine();
-                card = validateCommand(command);
-            }
-            while (card == null);
+            // TODO: Check for penalties
 
-            // Play card and go to next player
-            card.play(state);
-            this.state.updatePlayer();
+            // TODO: Process player's move
+            
+            state.updatePlayer();
         }
     }
 }
