@@ -35,8 +35,8 @@ UnoCLI brings the beloved Uno card game experience to your terminal. Play agains
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/ejmabunda/UnoCLI.git
-   cd UnoCLI
+   git clone https://github.com/ejmabunda/uno-cli.git
+   cd uno-cli
    ```
 
 
