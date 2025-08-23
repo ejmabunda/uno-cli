@@ -49,7 +49,7 @@ public class Game {
             this.numPlayers = numPlayers;
         }
         System.out.println("Creating game with " + this.numPlayers + " players.");
-        this.state = new GameState(getPlayers());
+        this.state = new GameState(createPlayers());
     }
 
     public Game() {
@@ -65,7 +65,7 @@ public class Game {
      * @param numPlayers the number of players to create
      * @return a list of Player objects (all human players)
      */
-    public ArrayList<Player> getPlayers() {
+    public ArrayList<Player> createPlayers() {
         ArrayList<Player> players = new ArrayList<>();
         players.add(new HumanPlayer("player 0"));
         for (int i = 1; i < numPlayers; i++) {
