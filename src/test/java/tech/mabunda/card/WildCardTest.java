@@ -15,7 +15,7 @@ import tech.mabunda.player.Player;
 class WildCardTest {
     @Test
     void testCardInit() {
-        Card wildCard = Card.create(Type.WILD, "wild draw four");
+        Card wildCard = Card.create("wild draw four");
         assertEquals(Type.WILD, wildCard.getType());
         assertEquals("WILD_DRAW_FOUR", wildCard.getValue());
         assertEquals(null, wildCard.getColor());
@@ -23,8 +23,8 @@ class WildCardTest {
 
     @Test
     void testCardComparison() {
-        Card wildCard = Card.create(Type.WILD, "wild draw four");
-        Card anotherWildCard = Card.create(Type.WILD, "wild draw four");
+        Card wildCard = Card.create("wild draw four");
+        Card anotherWildCard = Card.create("wild draw four");
         assertEquals(wildCard, anotherWildCard);
     }
 
@@ -33,9 +33,9 @@ class WildCardTest {
         ArrayList<Player> players = new ArrayList<>();
         players.add(new HumanPlayer("player 0"));
         GameState state = new GameState(players);
-        Card wildCard = Card.create(Type.WILD, "wild");
+        Card wildCard = Card.create("wild");
         assertTrue(wildCard.play(state));
-        Card wildDrawFourCard = Card.create(Type.WILD, "wild draw four");
+        Card wildDrawFourCard = Card.create("wild draw four");
         assertTrue(wildDrawFourCard.play(state));
     }
 }

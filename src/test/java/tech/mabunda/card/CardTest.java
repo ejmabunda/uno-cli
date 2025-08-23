@@ -12,56 +12,56 @@ import tech.mabunda.card.enums.Type;
 class CardTest {
     @Test
     void testCardInit() {
-        Card number1Card = Card.create(Type.NUMBER, "OnE", Color.BLUE);
+        Card number1Card = Card.create("blUe OnE");
         assertEquals(Type.NUMBER, number1Card.getType());
         assertEquals("ONE", number1Card.getValue());
         assertEquals(Color.BLUE, number1Card.getColor());
 
-        Card skipCard = Card.create(Type.ACTION, "skip", Color.RED);
+        Card skipCard = Card.create("rEd skiP");
         assertEquals(Type.ACTION, skipCard.getType());
         assertEquals("SKIP", skipCard.getValue());
         assertEquals(Color.RED, skipCard.getColor());
 
-        Card wildCard = Card.create(Type.WILD, "WiLd");
+        Card wildCard = Card.create("WiLd");
         assertEquals(Type.WILD, wildCard.getType());
         assertEquals("WILD", wildCard.getValue());
 
-        Card anotherWildCard = Card.create(Type.WILD, "WiLd");
+        Card anotherWildCard = Card.create("WiLd");
         assertTrue(wildCard.equals(anotherWildCard));
     }
 
     @Test
     void testCardComparison() {
-        Card number1Card = Card.create(Type.NUMBER, "one", Color.BLUE);
-        Card anotherNumber1Card = Card.create(Type.NUMBER, "onE", Color.BLUE);
+        Card number1Card = Card.create("blue ONE");
+        Card anotherNumber1Card = Card.create("BlUe oNe");
         assertEquals(number1Card, anotherNumber1Card);
     }
 
     @Test
     void testValidMoves() {
-        Card number1Card = Card.create(Type.NUMBER, "one", Color.YELLOW);
-        Card number2Card = Card.create(Type.NUMBER, "two", Color.RED);
+        Card number1Card = Card.create("yellow one");
+        Card number2Card = Card.create("red two");
         assertFalse(number1Card.match(number2Card));
 
-        Card wildCard = Card.create(Type.WILD, "wild");
+        Card wildCard = Card.create("wild");
         assertTrue(number1Card.match(wildCard));
 
-        Card yellowNumber1Card = Card.create(Type.NUMBER, "one", Color.YELLOW);
+        Card yellowNumber1Card = Card.create("yellow one");
         assertTrue(number1Card.match(yellowNumber1Card));
 
-        Card redReverseCard = Card.create(Type.ACTION, "reverse", Color.RED);
+        Card redReverseCard = Card.create("reD RevErsE");
         assertTrue(number2Card.match(redReverseCard));
     }
 
     @Test
     void testCardToString() {
-        Card card = Card.create(Type.NUMBER, "three", Color.GREEN);
+        Card card = Card.create("green three");
         assertEquals("green three", card.toString());
         
-        card = Card.create(Type.ACTION, "draw two", Color.RED);
+        card = Card.create("red draw two");
         assertEquals("red draw two", card.toString());
         
-        card = Card.create(Type.WILD, "wild");
+        card = Card.create("wild");
         assertEquals("wild", card.toString());
     }
 }

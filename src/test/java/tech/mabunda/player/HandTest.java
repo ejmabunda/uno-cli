@@ -5,8 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import tech.mabunda.card.Card;
-import tech.mabunda.card.enums.Type;
-import tech.mabunda.card.enums.Color;
 
 public class HandTest {
     @Test
@@ -14,7 +12,7 @@ public class HandTest {
         Player human = new HumanPlayer("bob");
         assertEquals(0, human.getHand().size());
 
-        Card redReverse = Card.create(Type.ACTION, "reverse", Color.RED);
+        Card redReverse = Card.create("red reverse");
         
         human.getHand().addCard(redReverse);
         assertEquals(1, human.getHand().size());

@@ -3,6 +3,7 @@ package tech.mabunda.game;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import tech.mabunda.card.Card;
 import tech.mabunda.player.HumanPlayer;
 import tech.mabunda.player.Player;
 
@@ -77,6 +78,15 @@ public class Game {
         return state;
     }
 
+    public Card validateCommand(String command) {
+        command = command.toLowerCase();
+        if (command.equals("draw")) {
+            return state.getDeck().drawCard();
+        }
+
+        return Card.create(command);
+    }
+
     /**
      * Starts the main UNO game loop.
      * <p>
@@ -90,6 +100,10 @@ public class Game {
 
         // Main game loop, continues until only 1 player left.. the loser
         Player player;
+        Card card;
+        String penalty;
+        String command;
+
         while (this.state.getPlayers().size() > 1) {
             player = this.state.getCurrentPlayer();
             // Player has won, go to next
@@ -98,13 +112,34 @@ public class Game {
                 continue;
             }
 
-            System.out.println(player.getName() + " what's your move.");
-            // TODO: Process player's move
+            // Handle penalties
+            penalty = state.getPenalty();
+            if (!penalty.isEmpty()) {
+                if (penalty.equals("skip")) {
+                    System.out.println("Skipping " + player.getName());
+                    state.removePenalty();
+                    continue;
+                }
+                else if (penalty.equals("draw two")) {
+                    state.getDeck().drawCard();
+                    state.getDeck().drawCard();
+                }
+                else {
+                    System.out.println("Unknown penalty " + penalty + " ignoring.");
+                }
+            }
 
-            // TODO: Setup a protocol
+            // Process player's move
+            do {
+                System.out.println(player.toString());
+                System.out.print("What's your move? ");
+                command = sc.nextLine();
+                card = validateCommand(command);
+            }
+            while (card == null);
 
-            // TODO: Update game state
-
+            // Play card and go to next player
+            card.play(state);
             this.state.updatePlayer();
         }
     }

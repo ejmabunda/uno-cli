@@ -40,8 +40,8 @@ public class HumanPlayerTest {
     @Test
     void testStringRepresentationOfHumanPlayer() {
         Player player = new HumanPlayer("player 0");
-        player.addCard(Card.create(Type.WILD, "wild draw four"));
-        player.addCard(Card.create(Type.NUMBER, "four", Color.YELLOW));
+        player.addCard(Card.create("wild draw four"));
+        player.addCard(Card.create("yellow four"));
 
         String expected = 
             "Name: player 0\n" + 

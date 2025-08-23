@@ -17,7 +17,7 @@ import tech.mabunda.player.Player;
 class NumberCardTest {
     @Test
     void testCardInit() {
-        Card number1Card = Card.create(Type.NUMBER, "one", Color.BLUE);
+        Card number1Card = Card.create("blue one");
         assertEquals(Type.NUMBER, number1Card.getType());
         assertEquals("ONE", number1Card.getValue());
         assertEquals(Color.BLUE, number1Card.getColor());
@@ -25,8 +25,8 @@ class NumberCardTest {
 
     @Test
     void testCardComparison() {
-        Card number1Card = Card.create(Type.NUMBER, "one", Color.BLUE);
-        Card anotherNumber1Card = Card.create(Type.NUMBER, "one", Color.BLUE);
+        Card number1Card = Card.create("blue one");
+        Card anotherNumber1Card = Card.create("blue one");
         assertEquals(number1Card, anotherNumber1Card);
     }
 
@@ -36,13 +36,13 @@ class NumberCardTest {
         players.add(new HumanPlayer("player 0"));
         GameState state = new GameState(players);
         Card topDiscard = state.getDeck().getDiscardPile().get(state.getDeck().getDiscardPile().size() - 1);
-        Card numberCard = Card.create(Type.NUMBER, "two", topDiscard.getColor());
+        Card numberCard = Card.create(topDiscard.getColor() + " seven");
         
         Card anotherNumberCard;
         if (numberCard.getColor() == Color.BLUE) {
-            anotherNumberCard = Card.create(Type.NUMBER, "three", Color.YELLOW);
+            anotherNumberCard = Card.create("yellow three");
         } else {
-            anotherNumberCard = Card.create(Type.NUMBER, "three", Color.BLUE);
+            anotherNumberCard = Card.create("blue three");
         }
 
         assertTrue(numberCard.play(state));
