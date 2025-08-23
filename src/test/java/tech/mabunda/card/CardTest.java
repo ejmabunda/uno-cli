@@ -52,4 +52,16 @@ class CardTest {
         Card redReverseCard = Card.create(Type.ACTION, "reverse", Color.RED);
         assertTrue(number2Card.match(redReverseCard));
     }
+
+    @Test
+    void testCardToString() {
+        Card card = Card.create(Type.NUMBER, "three", Color.GREEN);
+        assertEquals("green three", card.toString());
+        
+        card = Card.create(Type.ACTION, "draw two", Color.RED);
+        assertEquals("red draw two", card.toString());
+        
+        card = Card.create(Type.WILD, "wild");
+        assertEquals("wild", card.toString());
+    }
 }

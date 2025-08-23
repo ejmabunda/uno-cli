@@ -142,6 +142,14 @@ public abstract class Card {
         return create(type, value, null);
     }
 
+    public String toString() {
+        if (type == Type.NUMBER || type == Type.ACTION) {
+            return (color.toString() + " " + value.replace("_", " ")).toLowerCase();
+        } else {
+            return value.replace("_", " ").toLowerCase();
+        }
+    }
+
     /**
      * Returns the hash code for this card.
      *

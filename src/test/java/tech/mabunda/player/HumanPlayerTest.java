@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
 
 import tech.mabunda.card.Card;
+import tech.mabunda.card.enums.Color;
+import tech.mabunda.card.enums.Type;
 import tech.mabunda.deck.Deck;
 
 public class HumanPlayerTest {
@@ -33,5 +35,21 @@ public class HumanPlayerTest {
         }
 
         assertEquals(canPlay, !player1.getValidMoves(deck).isEmpty());
+    }
+
+    @Test
+    void testStringRepresentationOfHumanPlayer() {
+        Player player = new HumanPlayer("player 0");
+        player.addCard(Card.create(Type.WILD, "wild draw four"));
+        player.addCard(Card.create(Type.NUMBER, "four", Color.YELLOW));
+
+        String expected = 
+            "Name: player 0\n" + 
+            "Hand:\n" +
+            "\t- wild draw four\n" +
+            "\t- yellow four\n"
+        ;
+
+        assertEquals(expected, player.toString());
     }
 }

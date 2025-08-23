@@ -52,8 +52,24 @@ public abstract class Player {
         return hand;
     }
 
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+
+        result.append("Name: " + name + "\nHand:\n");
+        for (Card card: hand.getCards()) {
+            result.append("\t- " + card.toString() + "\n");
+        }
+
+        return result.toString();
+    }
+
     public boolean hasCard(Card card) {
         return hand.getCards().contains(card);
+    }
+
+    // For testing
+    public void addCard(Card card) {
+        hand.addCard(card);
     }
 
     /**

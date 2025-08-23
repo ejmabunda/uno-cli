@@ -1,6 +1,7 @@
 package tech.mabunda.game;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import tech.mabunda.player.HumanPlayer;
 import tech.mabunda.player.Player;
@@ -28,6 +29,8 @@ public class Game {
 
     private int numPlayers;
 
+    private Scanner sc;
+
     /**
      * Constructs a new Game instance.
      * <p>
@@ -36,16 +39,15 @@ public class Game {
      */
     public Game(int numPlayers) {
         if (numPlayers < minPlayers) {
-            System.out.println("Uno can host only 2-10 players.\nCreating game with " + minPlayers + " players.");
-            numPlayers = minPlayers;
+            System.out.println("Uno can host only 2-10 players.");
+            this.numPlayers = minPlayers;
+        } else if (numPlayers > maxPlayers) {
+            System.out.println("Uno can host only 2-10 players");
+            this.numPlayers = maxPlayers;
+        } else {
+            this.numPlayers = numPlayers;
         }
-        else if (numPlayers > maxPlayers) {
-            System.out.println("Uno can host only 2-10 players.\nCreating game with " + maxPlayers + " players.");
-            numPlayers = maxPlayers;
-        }
-
-        this.numPlayers = numPlayers;
-        System.out.println("Creating game with " + numPlayers + " players.");
+        System.out.println("Creating game with " + this.numPlayers + " players.");
         this.state = new GameState(getPlayers());
     }
 
@@ -84,6 +86,8 @@ public class Game {
      * implemented and are marked as TODO for future development.
      */
     public void start() {
+        sc = new Scanner(System.in);
+
         // Main game loop, continues until only 1 player left.. the loser
         Player player;
         while (this.state.getPlayers().size() > 1) {
@@ -94,7 +98,7 @@ public class Game {
                 continue;
             }
 
-            System.out.println(player.getName() + " is making their move.");
+            System.out.println(player.getName() + " what's your move.");
             // TODO: Process player's move
 
             // TODO: Setup a protocol
