@@ -8,12 +8,13 @@ UnoCLI brings the beloved Uno card game experience to your terminal. Play agains
 
 ## ✨ Features
 
- **Full Uno Gameplay**: All standard Uno rules and card types (core mechanics in progress)
- **Multiplayer Support**: Play with 2-10 human players (AI and network play planned)
- **Interactive CLI**: Clean, intuitive command-line interface
- **AI Players**: Planned for future releases
- **Game Statistics**: Planned feature
- **Custom Rules**: Planned feature
+
+- **Full Uno Gameplay**: All standard Uno rules and card types (core mechanics in progress)
+- **Multiplayer Support**: Play with 2-10 human players (AI and network play are planned, not yet available)
+- **Interactive CLI**: Clean, intuitive command-line interface
+- **AI Players**: Planned for future releases
+- **Game Statistics**: Planned feature
+- **Custom Rules**: Planned feature
 
 ## 🚀 Getting Started
 
@@ -48,7 +49,7 @@ UnoCLI brings the beloved Uno card game experience to your terminal. Play agains
 ## 🎮 How to Play
 
 1. Start the game and select number of players
-2. Choose player names and AI difficulty levels
+2. Choose player names
 3. Follow the on-screen prompts to play cards
 4. Use special commands:
    - `help` - Show available commands
@@ -65,6 +66,8 @@ Standard Uno rules apply:
 - Call "Uno" when you have one card left
 - First player to empty their hand wins
 
+**Note:** Only human players are currently implemented. AI and network play are planned for future updates.
+
 #### Card Play Logic
 
 Each card type implements a `play(GameState state)` method that defines its effect when played. This method is called by the player logic and updates the game state accordingly. See `src/main/java/tech/mabunda/card/README.md` for details.
@@ -78,9 +81,8 @@ src/
 ├── main/java/tech/mabunda/
 │   ├── App.java              # Main application entry point
 │   ├── game/                 # Core game logic
-│   ├── player/              # Player and AI implementations
-│   ├── card/                # Card definitions and deck management
-│   └── ui/                  # Console UI components
+│   ├── player/               # Player implementations
+│   ├── card/                 # Card definitions and deck management
 └── test/                    # Unit tests
 ```
 
