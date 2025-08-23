@@ -78,32 +78,6 @@ public class Game {
         return state;
     }
 
-    private boolean hasCards() {
-        return state.getCurrentPlayer().getHand().size() >= 1;
-    }
-
-    private boolean handlePenalty() {
-        String penalty = state.getPenalty();
-        Player player = state.getCurrentPlayer();
-
-        if (!penalty.isEmpty()) {
-            int cardsToDraw = 0;
-            if (penalty.equals("DRAW_TWO")) {
-                cardsToDraw = 2;
-            } else if (penalty.equals("WILD_DRAW_FOUR")) {
-                cardsToDraw = 4;
-            }
-
-            for (int i = 0; i < cardsToDraw; i++) {
-                player.getHand().addCard(state.getDeck().drawCard());
-            }
-
-            return true;
-        }
-
-        return false;
-    }
-
     /**
      * Starts the main UNO game loop.
      * <p>
@@ -117,7 +91,7 @@ public class Game {
 
         while (state.getPlayers().size() > 1) {
             // Check win status or penalty, skip if either is true
-            if (!hasCards() || handlePenalty()) {
+            if (state.isWinner() || state.handlePenalty()) {
                 state.updatePlayer();
                 continue;
             }
