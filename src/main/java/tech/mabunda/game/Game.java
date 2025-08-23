@@ -43,7 +43,9 @@ public class Game {
             System.out.println("Uno can host only 2-10 players.\nCreating game with " + maxPlayers + " players.");
             numPlayers = maxPlayers;
         }
+
         this.numPlayers = numPlayers;
+        System.out.println("Creating game with " + numPlayers + " players.");
         this.state = new GameState(getPlayers());
     }
 
@@ -92,6 +94,7 @@ public class Game {
                 continue;
             }
 
+            System.out.println(player.getName() + " is making their move.");
             // TODO: Process player's move
 
             // TODO: Setup a protocol

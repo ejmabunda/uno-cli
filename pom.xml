@@ -39,6 +39,13 @@
       <artifactId>junit-jupiter-params</artifactId>
       <scope>test</scope>
     </dependency>
+
+    <!-- picocli, for command-line arguments -->
+    <dependency>
+      <groupId>info.picocli</groupId>
+      <artifactId>picocli</artifactId>
+      <version>4.7.7</version>
+    </dependency>
   </dependencies>
 
   <build>
@@ -103,17 +110,17 @@
 
     <plugins>
       <plugin>
-	<groupId>org.codehaus.mojo
-	</groupId>
-	<artifactId>exec-maven-plugin
-	</artifactId>
-	<version>3.5.1
-	</version>
-      <configuration>
-        <mainClass>tech.mabunda.App
-	</mainClass>
-      </configuration>
-    </plugin>
+        <groupId>org.codehaus.mojo
+        </groupId>
+        <artifactId>exec-maven-plugin
+        </artifactId>
+        <version>3.5.1
+        </version>
+        <configuration>
+          <mainClass>tech.mabunda.App
+          </mainClass>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
 </project>
