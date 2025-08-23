@@ -37,8 +37,8 @@ class WildCardTest {
 
         state.getCurrentPlayer().getHand().addCard(wildCard);
         assertTrue(wildCard.play(state));
-        Card wildDrawFourCard = Card.create("wild draw four");
 
+        Card wildDrawFourCard = Card.create("wild draw four");
         state.getCurrentPlayer().getHand().addCard(wildDrawFourCard);
         assertTrue(wildDrawFourCard.play(state));
     }

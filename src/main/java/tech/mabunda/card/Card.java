@@ -119,12 +119,9 @@ public abstract class Card {
                 }
                 return true;
             } else {
-                System.out.println("Cannot play " + this + " on " + state.topDiscardPile());
                 return false;
             }
         }
-        System.out.println(player.getName() + " doesnt have this card. " + this);
-        System.out.println(player.toString());
         return false;
     }
 
