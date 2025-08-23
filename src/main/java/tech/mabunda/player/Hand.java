@@ -37,7 +37,7 @@ public class Hand {
      *
      * @param card the card to add
      */
-    public void add_card(Card card) {
+    public void addCard(Card card) {
         cards.add(card);
     }
 
@@ -47,7 +47,7 @@ public class Hand {
      * @param card the card to remove
      * @return true if the card was removed, false if the card was not found
      */
-    public boolean remove_card(Card card) {
+    public boolean removeCard(Card card) {
         return cards.remove(card);
     }
 

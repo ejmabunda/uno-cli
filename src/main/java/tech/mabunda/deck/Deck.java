@@ -119,7 +119,7 @@ public class Deck {
      *
      * @return the card drawn from the draw pile
      */
-    public Card draw_card() {
+    public Card drawCard() {
         if (draw_pile.size() <= 1) {
             shuffle();
         }

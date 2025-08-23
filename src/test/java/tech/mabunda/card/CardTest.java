@@ -25,6 +25,9 @@ class CardTest {
         Card wildCard = Card.create(Type.WILD, "WiLd");
         assertEquals(Type.WILD, wildCard.getType());
         assertEquals("WILD", wildCard.getValue());
+
+        Card anotherWildCard = Card.create(Type.WILD, "WiLd");
+        assertTrue(wildCard.equals(anotherWildCard));
     }
 
     @Test

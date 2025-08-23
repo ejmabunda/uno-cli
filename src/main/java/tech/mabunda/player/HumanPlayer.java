@@ -20,19 +20,7 @@ public class HumanPlayer extends Player {
     public HumanPlayer(String name) {
         super(name);
     }
-
-    /**
-     * Prompts the human player to select and play a card from their hand.
-     * <p>
-     * This method should be implemented to interact with the user and allow them to choose a card to play according to the game rules. Typically, this will call the selected card's {@code play(GameState)} method.
-     *
-     * @return true if the play is valid and successful, false otherwise
-     */
-    @Override
-    public boolean playCard() {
-        return false;
-    }
-
+    
     /**
      * Draws a card from the deck and adds it to the human player's hand.
      * <p>
@@ -43,7 +31,7 @@ public class HumanPlayer extends Player {
      */
     @Override
     public boolean drawCard(Deck deck) {
-        hand.add_card(deck.draw_card());
+        hand.addCard(deck.drawCard());
         return true;
     }
 }

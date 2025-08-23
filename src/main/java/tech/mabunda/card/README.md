@@ -9,7 +9,7 @@ This document describes the different card types in UnoCLI and the behavior of t
 - **ActionCard**: Represents action cards (Skip, Reverse, Draw Two). Implements `play` to apply special effects.
 - **WildCard**: Represents wild cards (Wild, Wild Draw Four). Implements `play` to allow color change or force draws.
 
-**Note:** Only human players are currently implemented. AI players are planned for future updates.
+**Note:** Only human players are currently implemented. AI players and full wild card logic are planned for future updates.
 
 ## The `play(GameState state)` Method
 
@@ -39,9 +39,10 @@ public boolean play(GameState state)
 - Example: `state.setPenalty(value)` for Draw Two.
 
 #### WildCard
+
 - Can be played at any time.
-- Allows the player to choose a new color.
-- For Wild Draw Four, forces the next player to draw four cards.
+- Currently, the `play` method only sets a penalty in the game state. It does **not** yet prompt the player to choose a new color or enforce the draw logic for Wild Draw Four.
+- Color selection and full Wild Draw Four logic are planned for future updates.
 
 ## Example Usage
 

@@ -70,5 +70,10 @@ public class DeckTest {
         // Discard pile should have 1 card, and it should be a number card
         assertEquals(1, discard_pile.size());
         assertEquals(Type.NUMBER, discard_pile.get(discard_pile.size() - 1).getType());
+
+        ArrayList<Card> draw_pile = deck.getDrawPile();
+        // 108 cards total, 5 players 7 cards each, 1 card in draw pile
+        int cardsLeftInDrawPile = 108 - ((numPlayers * 7) + 1);
+        assertEquals(cardsLeftInDrawPile, draw_pile.size());
     }
 }

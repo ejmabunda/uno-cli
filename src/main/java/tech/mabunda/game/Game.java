@@ -1,19 +1,20 @@
 package tech.mabunda.game;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
-import tech.mabunda.card.Card;
 import tech.mabunda.player.HumanPlayer;
 import tech.mabunda.player.Player;
 
 /**
  * Manages the main UNO game loop and setup.
  * <p>
- * This class is responsible for initializing the game, creating players (currently only human players), and running the main game loop.
- * It interacts with the {@link GameState} to manage the current state of the game.
+ * This class is responsible for initializing the game, creating players
+ * (currently only human players), and running the main game loop.
+ * It interacts with the {@link GameState} to manage the current state of the
+ * game.
  * <p>
- * <b>Note:</b> The main game logic and move processing are under development. AI and networked players are planned but not yet implemented.
+ * <b>Note:</b> The main game logic and move processing are under development.
+ * AI and networked players are planned but not yet implemented.
  */
 public class Game {
     /**
@@ -21,30 +22,45 @@ public class Game {
      */
     private GameState state;
 
-    private Scanner scanner = new Scanner(System.in);
+    private int minPlayers = 2;
 
-    private int minPlayers;
-    private int maxPlayers;
+    private int maxPlayers = 10;
+
+    private int numPlayers;
 
     /**
      * Constructs a new Game instance.
      * <p>
-     * Initializes the game object. The actual game state is set up in {@link #init()}.
+     * Initializes the game object. The actual game state is set up in
+     * {@link #init()}.
      */
+    public Game(int numPlayers) {
+        if (numPlayers < minPlayers) {
+            System.out.println("Uno can host only 2-10 players.\nCreating game with " + minPlayers + " players.");
+            numPlayers = minPlayers;
+        }
+        else if (numPlayers > maxPlayers) {
+            System.out.println("Uno can host only 2-10 players.\nCreating game with " + maxPlayers + " players.");
+            numPlayers = maxPlayers;
+        }
+        this.numPlayers = numPlayers;
+        this.state = new GameState(getPlayers());
+    }
+
     public Game() {
-        this.minPlayers = 2;
-        this.maxPlayers = 10;
+        this(2);
     }
 
     /**
      * Creates and returns a list of players for the game.
      * <p>
-     * Currently, only human players are supported. By default, creates one human player named "player 0" and the rest as human players with incremented names.
+     * Currently, only human players are supported. By default, creates one human
+     * player named "player 0" and the rest as human players with incremented names.
      *
      * @param numPlayers the number of players to create
      * @return a list of Player objects (all human players)
      */
-    private ArrayList<Player> getPlayers(int numPlayers) {
+    public ArrayList<Player> getPlayers() {
         ArrayList<Player> players = new ArrayList<>();
         players.add(new HumanPlayer("player 0"));
         for (int i = 1; i < numPlayers; i++) {
@@ -53,33 +69,29 @@ public class Game {
         return players;
     }
 
-    /**
-     * Initializes the game state, including creating players and setting up the deck.
-     * <p>
-     * This method should be called before starting the game loop.
-     */
-    private void init() {
-        ArrayList<Player> players = getPlayers(minPlayers);
-        this.state = new GameState(players);
+    public GameState getState() {
+        return state;
     }
 
     /**
      * Starts the main UNO game loop.
      * <p>
-     * Sets up the game state and repeatedly processes player turns until only one player remains.
-     * <b>Note:</b> The actual move processing and state updates are not yet implemented and are marked as TODO for future development.
+     * Sets up the game state and repeatedly processes player turns until only one
+     * player remains.
+     * <b>Note:</b> The actual move processing and state updates are not yet
+     * implemented and are marked as TODO for future development.
      */
     public void start() {
-        // Setup game state, including players, the deck and penalties
-        init();
-
         // Main game loop, continues until only 1 player left.. the loser
         Player player;
         while (this.state.getPlayers().size() > 1) {
             player = this.state.getCurrentPlayer();
             // Player has won, go to next
-            if (player.getHand().getCards().isEmpty()) { this.state.updatePlayer(); continue; }
-            
+            if (player.getHand().getCards().isEmpty()) {
+                this.state.updatePlayer();
+                continue;
+            }
+
             // TODO: Process player's move
 
             // TODO: Setup a protocol

@@ -29,7 +29,10 @@ public class NumberCard extends Card {
      */
     @Override
     public boolean play(GameState state) {
-        // Implementation should check if the card matches and update state accordingly
-        throw new UnsupportedOperationException("Unimplemented method 'play'");
+        if (!state.topDiscardPile().match(this)) {
+            return false;
+        }
+
+        return true;
     }
 }
