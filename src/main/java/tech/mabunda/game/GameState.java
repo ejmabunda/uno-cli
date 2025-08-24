@@ -135,11 +135,12 @@ public class GameState {
             for (int i = 0; i < cardsToDraw; i++) {
                 getCurrentPlayer().getHand().addCard(getDeck().drawCard());
             }
+            System.out.println(">>> " + getCurrentPlayer().getName() + " drew " + cardsToDraw + " card(s).");
 
             penalty = "";
             return true;
         }
-
+        
         return false;
     }
 
@@ -150,6 +151,14 @@ public class GameState {
      */
     public void setColor(Color color) {
         this.color = color;
+    }
+
+    public void removeColor() {
+        color = null;
+    }
+
+    public Color getColor() {
+        return color;
     }
 
     /**
