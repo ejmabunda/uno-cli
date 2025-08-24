@@ -108,8 +108,13 @@ public class Game {
 
             Card cardToPlay = Card.create(command);
 
-            if (cardToPlay == null || !player.hasCard(cardToPlay)) {
-                System.out.println(">>> [ERROR] Invalid choice, try again!");
+            if (cardToPlay == null) {
+                System.out.println(">>> [ERROR] Invalid card, please enter a valid format (e.g blue skip)!");
+                continue;
+            }
+
+            if (!player.hasCard(cardToPlay)) {
+                System.out.println(">>> [ERROR] You do not have that card, try again!");
                 continue;
             }
 
