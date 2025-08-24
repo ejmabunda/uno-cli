@@ -1,8 +1,5 @@
 package tech.mabunda.card;
 
-import java.util.Arrays;
-import java.util.List;
-
 import tech.mabunda.card.enums.Action;
 import tech.mabunda.card.enums.Color;
 import tech.mabunda.card.enums.Number;
@@ -115,8 +112,15 @@ public abstract class Card {
                 } else if (value.equals("REVERSE")) {
                     state.updateDirection();
                 } else if (value.equals("WILD")) {
+                    // TODO: implement input handling for this
+                    // RED is just a placeholder
                     state.setColor(Color.RED);
                 }
+
+                // Remove remove from player, add to discard pile
+                player.getHand().removeCard(this);
+                state.getDeck().getDiscardPile().add(this);
+
                 return true;
             } else {
                 return false;
@@ -150,7 +154,6 @@ public abstract class Card {
         } catch (IllegalArgumentException iae) {
             try {
                 if (name.contains("DRAW")) {
-
                     return new ActionCard(Action.valueOf("DRAW_TWO"), Color.valueOf(tokens[0]));
                 }
                 return new ActionCard(Action.valueOf(tokens[1]), Color.valueOf(tokens[0]));

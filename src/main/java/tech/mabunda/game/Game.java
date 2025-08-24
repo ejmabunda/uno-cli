@@ -98,9 +98,9 @@ public class Game {
 
         do {
             displayPrompt();
-            command = sc.nextLine().toUpperCase();
+            command = sc.nextLine();
 
-            if (command.equals("DRAW")) {
+            if (command.equalsIgnoreCase("DRAW")) {
                 player.getHand().addCard(state.getDeck().drawCard());
                 System.out.println(">>> [OK] " + player.getName() + " drew a card.");
                 return true;
