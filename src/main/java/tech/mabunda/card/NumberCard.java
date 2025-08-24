@@ -20,19 +20,4 @@ public class NumberCard extends Card {
     public NumberCard(Number value, Color color) {
         super(Type.NUMBER, value.toString(), color);
     }
-
-    /**
-     * Plays the number card. Checks if the card can be played (matches color or value) and updates the game state if valid.
-     *
-     * @param state the current game state
-     * @return true if the play is valid and successful, false otherwise
-     */
-    @Override
-    public boolean play(GameState state) {
-        if (!state.topDiscardPile().match(this)) {
-            return false;
-        }
-
-        return true;
-    }
 }

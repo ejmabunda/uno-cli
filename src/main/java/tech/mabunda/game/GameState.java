@@ -11,15 +11,18 @@ import tech.mabunda.player.Player;
  * Manages the state of an UNO game, including players, deck, turn order, color, and penalties.
  */
 /**
- * Manages the state of an UNO game, including players, deck, turn order, color, and penalties.
+ * Manages the state of an UNO game, including players, deck, turn order, color,
+ * and penalties.
  * <p>
- * This class provides methods to access and update the current state of the game, such as the current player, direction, and penalties.
+ * This class provides methods to access and update the current state of the
+ * game, such as the current player, direction, and penalties.
  */
 public class GameState {
     /**
      * The list of players in the game.
      */
     private ArrayList<Player> players;
+
     /**
      * The deck of UNO cards used in the game.
      */
@@ -42,7 +45,8 @@ public class GameState {
     private String penalty;
 
     /**
-     * Initializes the game state with the given players, creates a deck, and deals cards.
+     * Initializes the game state with the given players, creates a deck, and deals
+     * cards.
      * Sets the starting player and direction.
      *
      * @param players the list of players participating in the game
@@ -54,6 +58,7 @@ public class GameState {
         this.currentPlayerIndex = 0;
         this.direction = 1;
         this.color = topDiscardPile().getColor();
+        this.penalty = "";
     }
 
     public Deck getDeck() {
@@ -105,6 +110,10 @@ public class GameState {
         return players.get(currentPlayerIndex);
     }
 
+    public boolean isWinner() {
+        return getCurrentPlayer().getHand().size() == 0;
+    }
+
     /**
      * Sets a penalty based on the given card's value.
      *
@@ -114,11 +123,24 @@ public class GameState {
         this.penalty = penalty;
     }
 
-    /**
-     * Removes any active penalty from the game state.
-     */
-    public void removePenalty() {
-        penalty = null;
+    public boolean handlePenalty() {
+        if (!penalty.isEmpty()) {
+            int cardsToDraw = 0;
+            if (penalty.equals("DRAW_TWO")) {
+                cardsToDraw = 2;
+            } else if (penalty.equals("WILD_DRAW_FOUR")) {
+                cardsToDraw = 4;
+            }
+
+            for (int i = 0; i < cardsToDraw; i++) {
+                getCurrentPlayer().getHand().addCard(getDeck().drawCard());
+            }
+
+            penalty = "";
+            return true;
+        }
+
+        return false;
     }
 
     /**

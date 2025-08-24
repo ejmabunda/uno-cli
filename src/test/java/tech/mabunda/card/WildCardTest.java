@@ -34,8 +34,12 @@ class WildCardTest {
         players.add(new HumanPlayer("player 0"));
         GameState state = new GameState(players);
         Card wildCard = Card.create("wild");
+
+        state.getCurrentPlayer().getHand().addCard(wildCard);
         assertTrue(wildCard.play(state));
+
         Card wildDrawFourCard = Card.create("wild draw four");
+        state.getCurrentPlayer().getHand().addCard(wildDrawFourCard);
         assertTrue(wildDrawFourCard.play(state));
     }
 }

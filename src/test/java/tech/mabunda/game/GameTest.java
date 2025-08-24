@@ -15,19 +15,19 @@ public class GameTest {
     @Test
     void testGetPlayers() {
         Game game = new Game();
-        assertEquals(2, game.getPlayers().size());
+        assertEquals(2, game.createPlayers().size());
         
         game = new Game(5);
-        assertEquals(5, game.getPlayers().size());
+        assertEquals(5, game.createPlayers().size());
         
         game = new Game(0);
-        assertEquals(2, game.getPlayers().size());
+        assertEquals(2, game.createPlayers().size());
         
         game = new Game(12);
-        assertEquals(10, game.getPlayers().size());
+        assertEquals(10, game.createPlayers().size());
         
         game = new Game(10);
-        assertEquals(10, game.getPlayers().size());
+        assertEquals(10, game.createPlayers().size());
     }
     
     @Test

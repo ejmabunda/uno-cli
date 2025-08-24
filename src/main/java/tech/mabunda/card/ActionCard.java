@@ -20,21 +20,4 @@ public class ActionCard extends Card {
     public ActionCard(Action value, Color color) {
         super(Type.ACTION, value.toString(), color);
     }
-
-    /**
-     * Plays the action card. Checks if the card can be played (matches color or value) and applies the action effect (Skip, Reverse, Draw Two).
-     *
-     * @param state the current game state
-     * @return true if the play is valid and successful, false otherwise
-     */
-    @Override
-    public boolean play(GameState state) {
-        if (!state.topDiscardPile().match(this)) {
-            return false;
-        }
-
-        state.setPenalty(value);
-        
-        return true;
-    }
 }

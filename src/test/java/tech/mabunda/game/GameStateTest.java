@@ -28,7 +28,7 @@ public class GameStateTest {
 
         GameState state = new GameState(players);
         assertEquals(3, state.getPlayers().size());
-        assertNull(state.getPenalty());
+        assertEquals("", state.getPenalty());
 
         Card drawTwoCard = Card.create("yellow draw two");
         state.setPenalty(drawTwoCard.getValue());

@@ -49,7 +49,7 @@ public class Game {
             this.numPlayers = numPlayers;
         }
         System.out.println("Creating game with " + this.numPlayers + " players.");
-        this.state = new GameState(getPlayers());
+        this.state = new GameState(createPlayers());
     }
 
     public Game() {
@@ -65,7 +65,7 @@ public class Game {
      * @param numPlayers the number of players to create
      * @return a list of Player objects (all human players)
      */
-    public ArrayList<Player> getPlayers() {
+    public ArrayList<Player> createPlayers() {
         ArrayList<Player> players = new ArrayList<>();
         players.add(new HumanPlayer("player 0"));
         for (int i = 1; i < numPlayers; i++) {
@@ -78,13 +78,53 @@ public class Game {
         return state;
     }
 
-    public Card validateCommand(String command) {
-        command = command.toLowerCase();
-        if (command.equals("draw")) {
-            return state.getDeck().drawCard();
+    public void displayPrompt() {
+        Player player = state.getCurrentPlayer();
+        System.out.println("It's " + player.getName() + "'s turn!");
+        System.out.println("The top card is " + state.topDiscardPile());
+        System.out.print("Your hand:\n\t-> ");
+
+        for (Card card : player.getHand().getCards()) {
+            System.out.print(card + ", ");
         }
 
-        return Card.create(command);
+        System.out.print("\nWhat's your move? ");
+    }
+
+    private boolean handleCommand() {
+        Player player = state.getCurrentPlayer();
+        String command;
+        boolean cardPlayed = false;
+
+        do {
+            displayPrompt();
+            command = sc.nextLine();
+
+            if (command.equalsIgnoreCase("DRAW")) {
+                player.getHand().addCard(state.getDeck().drawCard());
+                System.out.println(">>> [OK] " + player.getName() + " drew a card.");
+                return true;
+            }
+
+            Card cardToPlay = Card.create(command);
+
+            if (cardToPlay == null) {
+                System.out.println(">>> [ERROR] Invalid card, please enter a valid format (e.g blue skip)!");
+                continue;
+            }
+
+            if (!player.hasCard(cardToPlay)) {
+                System.out.println(">>> [ERROR] You do not have that card, try again!");
+                continue;
+            }
+
+            cardPlayed = cardToPlay.play(state);
+            if (cardPlayed) {
+                System.out.println(">>> [OK] " + player.getName() + " played " + cardToPlay + "\n");
+            }
+        } while (!cardPlayed);
+
+        return true;
     }
 
     /**
@@ -97,50 +137,22 @@ public class Game {
      */
     public void start() {
         sc = new Scanner(System.in);
-
-        // Main game loop, continues until only 1 player left.. the loser
-        Player player;
-        Card card;
-        String penalty;
         String command;
+        Player player;
 
-        while (this.state.getPlayers().size() > 1) {
-            player = this.state.getCurrentPlayer();
-            // Player has won, go to next
-            if (player.getHand().getCards().isEmpty()) {
-                this.state.updatePlayer();
+        while (state.getPlayers().size() > 1) {
+            player = state.getCurrentPlayer();
+
+            // Check win status or penalty, skip player if either is true
+            if (state.isWinner() || state.handlePenalty()) {
+                state.updatePlayer();
                 continue;
             }
 
-            // Handle penalties
-            penalty = state.getPenalty();
-            if (!penalty.isEmpty()) {
-                if (penalty.equals("skip")) {
-                    System.out.println("Skipping " + player.getName());
-                    state.removePenalty();
-                    continue;
-                }
-                else if (penalty.equals("draw two")) {
-                    state.getDeck().drawCard();
-                    state.getDeck().drawCard();
-                }
-                else {
-                    System.out.println("Unknown penalty " + penalty + " ignoring.");
-                }
-            }
-
             // Process player's move
-            do {
-                System.out.println(player.toString());
-                System.out.print("What's your move? ");
-                command = sc.nextLine();
-                card = validateCommand(command);
-            }
-            while (card == null);
+            handleCommand();
 
-            // Play card and go to next player
-            card.play(state);
-            this.state.updatePlayer();
+            state.updatePlayer();
         }
     }
 }
