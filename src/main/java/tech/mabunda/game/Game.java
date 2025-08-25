@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import tech.mabunda.card.Card;
+import tech.mabunda.card.enums.Color;
+import tech.mabunda.card.enums.Type;
 import tech.mabunda.player.HumanPlayer;
 import tech.mabunda.player.Player;
 
@@ -82,6 +84,9 @@ public class Game {
         Player player = state.getCurrentPlayer();
         System.out.println("It's " + player.getName() + "'s turn!");
         System.out.println("The top card is " + state.topDiscardPile());
+        if (state.getColor() != null) {
+            System.out.println("The color to match is " + state.getColor());
+        }
         System.out.print("Your hand:\n\t-> ");
 
         for (Card card : player.getHand().getCards()) {
@@ -98,29 +103,56 @@ public class Game {
 
         do {
             displayPrompt();
-            command = sc.nextLine();
+            command = sc.nextLine().toLowerCase();
 
-            if (command.equalsIgnoreCase("DRAW")) {
+
+            if (command.equals("draw")) {
                 player.getHand().addCard(state.getDeck().drawCard());
-                System.out.println(">>> [OK] " + player.getName() + " drew a card.");
+                System.out.println(">>> [OK] " + player.getName() + " drew a card.\n");
                 return true;
             }
 
-            Card cardToPlay = Card.create(command);
+            Card cardToPlay;
+            String colorToSet = "";
 
+            if (command.contains("wild")) {
+                String[] tokens = command.split(" ");
+                StringBuilder sb = new StringBuilder();
+                sb.append(tokens[0]);
+                for (int i = 1; i < tokens.length - 1; i++) {
+                    sb.append("_" + tokens[i]);
+                }
+                cardToPlay = Card.create(sb.toString());
+                colorToSet = tokens[tokens.length - 1].toUpperCase();
+                System.out.println(">>> card: " + sb.toString() + ", color: " + colorToSet);
+
+            } else {
+                cardToPlay = Card.create(command);
+            }
+
+            // Check if card is valid
             if (cardToPlay == null) {
-                System.out.println(">>> [ERROR] Invalid card, please enter a valid format (e.g blue skip)!");
+                System.out.println(">>> [ERROR] Invalid card, please enter a valid format (e.g blue skip)!\n");
                 continue;
             }
 
+            // Check if player has the card
             if (!player.hasCard(cardToPlay)) {
-                System.out.println(">>> [ERROR] You do not have that card, try again!");
+                System.out.println(">>> [ERROR] You do not have that card, try again!\n");
                 continue;
             }
 
+            // Check if card is playable based on the current state
             cardPlayed = cardToPlay.play(state);
             if (cardPlayed) {
                 System.out.println(">>> [OK] " + player.getName() + " played " + cardToPlay + "\n");
+                
+                if (cardToPlay.getType() == Type.WILD) {
+                    state.setColor(Color.valueOf(colorToSet));
+                }
+            }
+            else {
+                System.out.println(">>> [ERROR] You cannot play " + cardToPlay + " on " + state.topDiscardPile() + "\n");
             }
         } while (!cardPlayed);
 
@@ -137,7 +169,6 @@ public class Game {
      */
     public void start() {
         sc = new Scanner(System.in);
-        String command;
         Player player;
 
         while (state.getPlayers().size() > 1) {
@@ -145,6 +176,7 @@ public class Game {
 
             // Check win status or penalty, skip player if either is true
             if (state.isWinner() || state.handlePenalty()) {
+                System.out.println(">>> Skipping " + player.getName() + "\n");
                 state.updatePlayer();
                 continue;
             }
@@ -152,6 +184,7 @@ public class Game {
             // Process player's move
             handleCommand();
 
+            // Go to next player
             state.updatePlayer();
         }
     }

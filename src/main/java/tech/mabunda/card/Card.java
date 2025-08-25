@@ -95,6 +95,15 @@ public abstract class Card {
         return color;
     }
 
+    public void setColor(Color color) {
+        if (type == Type.WILD) {
+            this.color = color;
+        }
+        else {
+            System.out.println(">>> [ERROR] Cannot set color to non-wild cards.");
+        }
+    }
+
     /**
      * Plays the card. Must be implemented by subclasses to define card-specific
      * play logic.
@@ -106,16 +115,13 @@ public abstract class Card {
         Player player = state.getCurrentPlayer();
 
         if (player.hasCard(this)) {
-            if (state.topDiscardPile().match(this)) {
+            if ((state.getColor() != null && state.getColor().equals(color)) || state.topDiscardPile().match(this)) {
                 if (value.equals("SKIP") || value.equals("DRAW_TWO") || value.equals("WILD_DRAW_FOUR")) {
                     state.setPenalty(value);
                 } else if (value.equals("REVERSE")) {
                     state.updateDirection();
-                } else if (value.equals("WILD")) {
-                    // TODO: implement input handling for this
-                    // RED is just a placeholder
-                    state.setColor(Color.RED);
-                }
+                } if (type != Type.WILD) { state.removeColor(); }
+                // Color for wild is set by the Game class
 
                 // Remove remove from player, add to discard pile
                 player.getHand().removeCard(this);
@@ -151,13 +157,13 @@ public abstract class Card {
         String tokens[] = name.split(" ");
         try {
             return new NumberCard(Number.valueOf(tokens[1]), Color.valueOf(tokens[0]));
-        } catch (IllegalArgumentException iae) {
+        } catch (Exception e) {
             try {
                 if (name.contains("DRAW")) {
                     return new ActionCard(Action.valueOf("DRAW_TWO"), Color.valueOf(tokens[0]));
                 }
                 return new ActionCard(Action.valueOf(tokens[1]), Color.valueOf(tokens[0]));
-            } catch (Exception e) {
+            } catch (Exception e1) {
                 return null;
             }
         }
