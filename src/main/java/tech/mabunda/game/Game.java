@@ -124,7 +124,6 @@ public class Game {
                 }
                 cardToPlay = Card.create(sb.toString());
                 colorToSet = tokens[tokens.length - 1].toUpperCase();
-                System.out.println(">>> card: " + sb.toString() + ", color: " + colorToSet);
 
             } else {
                 cardToPlay = Card.create(command);
