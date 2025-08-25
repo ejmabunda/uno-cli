@@ -15,10 +15,10 @@ import tech.mabunda.player.Player;
  * This class is responsible for initializing the game, creating players
  * (currently only human players), and running the main game loop.
  * It interacts with the {@link GameState} to manage the current state of the
- * game.
+ * game, including player turns, card play, and win/penalty checks.
  * <p>
- * <b>Note:</b> The main game logic and move processing are under development.
- * AI and networked players are planned but not yet implemented.
+ * <b>Note:</b> Only human players are currently supported. AI and networked players
+ * are planned for future development.
  */
 public class Game {
     /**
@@ -35,10 +35,12 @@ public class Game {
     private Scanner sc;
 
     /**
-     * Constructs a new Game instance.
+     * Constructs a new Game instance with the specified number of players.
      * <p>
-     * Initializes the game object. The actual game state is set up in
-     * {@link #init()}.
+     * Initializes the game object and sets up the game state with the given number of players.
+     * If the number is outside the allowed range, it is clamped to the minimum or maximum.
+     *
+     * @param numPlayers the number of players to create (clamped between 2 and 10)
      */
     public Game(int numPlayers) {
         if (numPlayers < minPlayers) {
@@ -61,10 +63,9 @@ public class Game {
     /**
      * Creates and returns a list of players for the game.
      * <p>
-     * Currently, only human players are supported. By default, creates one human
-     * player named "player 0" and the rest as human players with incremented names.
+     * Currently, only human players are supported. The first player is named "player 0"
+     * and the rest are named incrementally ("player 1", "player 2", etc).
      *
-     * @param numPlayers the number of players to create
      * @return a list of Player objects (all human players)
      */
     public ArrayList<Player> createPlayers() {
@@ -162,9 +163,7 @@ public class Game {
      * Starts the main UNO game loop.
      * <p>
      * Sets up the game state and repeatedly processes player turns until only one
-     * player remains.
-     * <b>Note:</b> The actual move processing and state updates are not yet
-     * implemented and are marked as TODO for future development.
+     * player remains. Handles win and penalty checks, player move input, and turn updates.
      */
     public void start() {
         sc = new Scanner(System.in);
@@ -176,7 +175,6 @@ public class Game {
             // Check win status or penalty, skip player if either is true
             if (state.isWinner() || state.handlePenalty()) {
                 System.out.println(">>> Skipping " + player.getName() + "\n");
-                state.updatePlayer();
                 continue;
             }
 

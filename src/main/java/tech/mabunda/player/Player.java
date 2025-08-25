@@ -10,8 +10,8 @@ import tech.mabunda.deck.Deck;
  * <p>
  * Each player has a name and a hand of cards. Subclasses must implement the logic for playing cards,
  * drawing cards, and determining if a play is possible, according to the rules of UNO or any custom rules.
- * <p>
- * This class provides common functionality for all player types, including access to the player's name and hand.
+ * Provides common functionality for all player types, including access to the player's name and hand,
+ * and default logic for checking valid moves.
  */
 public abstract class Player {
     /**

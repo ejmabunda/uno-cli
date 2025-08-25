@@ -7,8 +7,8 @@ import tech.mabunda.card.Card;
 /**
  * Represents a hand of cards held by a player in the UNO game.
  * <p>
- * This class is a simple wrapper around a list of {@link tech.mabunda.card.Card} objects, providing methods to add, remove,
- * and check the number of cards in the hand.
+ * A simple wrapper around a list of {@link tech.mabunda.card.Card} objects, providing methods to add, remove,
+ * and check the number of cards in the hand. Used by all player types.
  */
 public class Hand {
     /**

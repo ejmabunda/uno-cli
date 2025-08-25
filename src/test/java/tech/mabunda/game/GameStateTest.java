@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
 
 import tech.mabunda.card.Card;
-import tech.mabunda.card.enums.Color;
-import tech.mabunda.card.enums.Type;
 import tech.mabunda.player.HumanPlayer;
 import tech.mabunda.player.Player;
 

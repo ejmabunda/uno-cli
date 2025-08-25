@@ -1,7 +1,6 @@
 package tech.mabunda.card;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
@@ -10,7 +9,6 @@ import org.junit.jupiter.api.Test;
 
 import tech.mabunda.card.enums.Color;
 import tech.mabunda.card.enums.Type;
-import tech.mabunda.card.enums.Number;
 import tech.mabunda.game.GameState;
 import tech.mabunda.player.HumanPlayer;
 import tech.mabunda.player.Player;
