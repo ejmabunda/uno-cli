@@ -174,7 +174,12 @@ public class Game {
             player = state.getCurrentPlayer();
 
             // Check win status or penalty, skip player if either is true
-            if (state.isWinner() || state.handlePenalty()) {
+            if (state.isWinner()) {
+                System.out.println(">>> " + player.getName() + " won.\n");
+                state.getPlayers().remove(player);
+                state.updatePlayer();
+                continue;
+            } else if (state.handlePenalty()) {
                 System.out.println(">>> Skipping " + player.getName() + "\n");
                 state.updatePlayer();
                 continue;
@@ -186,5 +191,7 @@ public class Game {
             // Go to next player
             state.updatePlayer();
         }
+
+        System.out.println(">>> Game over!");
     }
 }
