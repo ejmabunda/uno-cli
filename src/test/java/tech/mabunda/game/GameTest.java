@@ -5,13 +5,22 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * Unit tests for the {@link Game} class, verifying initialization, player creation, and state setup.
+ */
 public class GameTest {
+    /**
+     * Tests that a Game object is initialized correctly.
+     */
     @Test
     void testInit() {
         Game game = new Game();
         assertNotNull(game);
     }
 
+    /**
+     * Tests that the correct number of players are created for various input values.
+     */
     @Test
     void testGetPlayers() {
         Game game = new Game();
@@ -30,6 +39,9 @@ public class GameTest {
         assertEquals(10, game.createPlayers().size());
     }
     
+    /**
+     * Tests that the GameState is initialized with the correct number of players.
+     */
     @Test
     void testStateCorrectlyInitialized() {
         Game game = new Game();

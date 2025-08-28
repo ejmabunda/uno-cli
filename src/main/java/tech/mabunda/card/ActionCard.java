@@ -3,7 +3,6 @@ package tech.mabunda.card;
 import tech.mabunda.card.enums.Action;
 import tech.mabunda.card.enums.Color;
 import tech.mabunda.card.enums.Type;
-import tech.mabunda.game.GameState;
 
 /**
  * Represents an action card in UNO (e.g., Skip, Reverse, Draw Two).

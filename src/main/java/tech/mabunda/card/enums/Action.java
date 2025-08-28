@@ -2,6 +2,7 @@ package tech.mabunda.card.enums;
 
 /**
  * Enum representing action card types in UNO.
+ * <p>
  * Includes SKIP, REVERSE, and DRAW_TWO.
  */
 public enum Action {

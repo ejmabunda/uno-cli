@@ -7,10 +7,13 @@ import org.junit.jupiter.api.Test;
 /**
  * Unit test for simple App.
  */
+/**
+ * Basic unit test for the {@link tech.mabunda.App} class.
+ */
 public class AppTest {
 
     /**
-     * Rigorous Test :-)
+     * Simple test to verify the test framework is working.
      */
     @Test
     public void shouldAnswerWithTrue() {

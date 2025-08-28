@@ -6,7 +6,13 @@ import org.junit.jupiter.api.Test;
 
 import tech.mabunda.card.Card;
 
+/**
+ * Unit tests for the {@link Hand} class, verifying hand initialization, adding, and removing cards.
+ */
 public class HandTest {
+    /**
+     * Tests hand initialization, adding a card, and removing a card.
+     */
     @Test
     void testHandInit() {
         Player human = new HumanPlayer("bob");
