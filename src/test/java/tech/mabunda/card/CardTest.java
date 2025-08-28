@@ -9,7 +9,13 @@ import org.junit.jupiter.api.Test;
 import tech.mabunda.card.enums.Color;
 import tech.mabunda.card.enums.Type;
 
+/**
+ * Unit tests for the {@link Card} class, verifying initialization, comparison, matching, and string representation.
+ */
 class CardTest {
+    /**
+     * Tests initialization of various Card types.
+     */
     @Test
     void testCardInit() {
         Card number1Card = Card.create("blUe OnE");
@@ -30,6 +36,9 @@ class CardTest {
         assertTrue(wildCard.equals(anotherWildCard));
     }
 
+    /**
+     * Tests comparison of two Cards for equality.
+     */
     @Test
     void testCardComparison() {
         Card number1Card = Card.create("blue ONE");
@@ -37,6 +46,9 @@ class CardTest {
         assertEquals(number1Card, anotherNumber1Card);
     }
 
+    /**
+     * Tests the match logic for various Card types.
+     */
     @Test
     void testValidMoves() {
         Card number1Card = Card.create("yellow one");
@@ -53,6 +65,9 @@ class CardTest {
         assertTrue(number2Card.match(redReverseCard));
     }
 
+    /**
+     * Tests the string representation of Card objects.
+     */
     @Test
     void testCardToString() {
         Card card = Card.create("green three");

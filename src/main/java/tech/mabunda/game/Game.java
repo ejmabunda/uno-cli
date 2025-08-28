@@ -10,15 +10,12 @@ import tech.mabunda.player.HumanPlayer;
 import tech.mabunda.player.Player;
 
 /**
- * Manages the main UNO game loop and setup.
+ * Main class for managing the UNO game loop and setup.
  * <p>
- * This class is responsible for initializing the game, creating players
- * (currently only human players), and running the main game loop.
- * It interacts with the {@link GameState} to manage the current state of the
- * game.
+ * Responsible for initializing the game, creating players (currently only human players), and running the main game loop.
+ * Interacts with the {@link GameState} to manage the current state of the game, including player turns, move validation, and win/penalty handling.
  * <p>
- * <b>Note:</b> The main game logic and move processing are under development.
- * AI and networked players are planned but not yet implemented.
+ * <b>Note:</b> AI and networked players are planned but not yet implemented. The game currently supports only human players via the command line.
  */
 public class Game {
     /**
@@ -35,10 +32,12 @@ public class Game {
     private Scanner sc;
 
     /**
-     * Constructs a new Game instance.
+     * Constructs a new Game instance with the specified number of players.
      * <p>
-     * Initializes the game object. The actual game state is set up in
-     * {@link #init()}.
+     * If the number of players is outside the allowed range (2-10), it is clamped to the nearest valid value.
+     * The game state and players are initialized accordingly.
+     *
+     * @param numPlayers the number of players to participate in the game
      */
     public Game(int numPlayers) {
         if (numPlayers < minPlayers) {
@@ -61,10 +60,9 @@ public class Game {
     /**
      * Creates and returns a list of players for the game.
      * <p>
-     * Currently, only human players are supported. By default, creates one human
-     * player named "player 0" and the rest as human players with incremented names.
+     * Currently, only human players are supported. The first player is named "player 0",
+     * and subsequent players are named "player 1", "player 2", etc.
      *
-     * @param numPlayers the number of players to create
      * @return a list of Player objects (all human players)
      */
     public ArrayList<Player> createPlayers() {
@@ -80,6 +78,9 @@ public class Game {
         return state;
     }
 
+    /**
+     * Displays the current player's turn prompt, including the top card, color to match, and the player's hand.
+     */
     public void displayPrompt() {
         Player player = state.getCurrentPlayer();
         System.out.println("It's " + player.getName() + "'s turn!");
@@ -96,6 +97,12 @@ public class Game {
         System.out.print("\nWhat's your move? ");
     }
 
+    /**
+     * Handles user input for the current player's move, including drawing a card or playing a card.
+     * Validates the move and updates the game state accordingly.
+     *
+     * @return true if a valid move was made, false otherwise
+     */
     private boolean handleCommand() {
         Player player = state.getCurrentPlayer();
         String command;
@@ -161,10 +168,10 @@ public class Game {
     /**
      * Starts the main UNO game loop.
      * <p>
-     * Sets up the game state and repeatedly processes player turns until only one
-     * player remains.
-     * <b>Note:</b> The actual move processing and state updates are not yet
-     * implemented and are marked as TODO for future development.
+     * Sets up the game state and repeatedly processes player turns until only one player remains.
+     * Handles win and penalty conditions, processes each player's move, and advances turns.
+     *
+     * <b>Note:</b> Only human players are currently supported. AI and network play are planned for future development.
      */
     public void start() {
         sc = new Scanner(System.in);
@@ -174,7 +181,12 @@ public class Game {
             player = state.getCurrentPlayer();
 
             // Check win status or penalty, skip player if either is true
-            if (state.isWinner() || state.handlePenalty()) {
+            if (state.isWinner()) {
+                System.out.println(">>> " + player.getName() + " won.\n");
+                state.getPlayers().remove(player);
+                state.updatePlayer();
+                continue;
+            } else if (state.handlePenalty()) {
                 System.out.println(">>> Skipping " + player.getName() + "\n");
                 state.updatePlayer();
                 continue;
@@ -186,5 +198,7 @@ public class Game {
             // Go to next player
             state.updatePlayer();
         }
+
+        System.out.println(">>> Game over!");
     }
 }

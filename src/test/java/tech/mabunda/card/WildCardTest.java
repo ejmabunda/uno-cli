@@ -12,7 +12,13 @@ import tech.mabunda.game.GameState;
 import tech.mabunda.player.HumanPlayer;
 import tech.mabunda.player.Player;
 
+/**
+ * Unit tests for the {@link WildCard} class, verifying initialization, comparison, and playability.
+ */
 class WildCardTest {
+    /**
+     * Tests initialization of a WildCard.
+     */
     @Test
     void testCardInit() {
         Card wildCard = Card.create("wild draw four");
@@ -21,6 +27,9 @@ class WildCardTest {
         assertEquals(null, wildCard.getColor());
     }
 
+    /**
+     * Tests comparison of two WildCards for equality.
+     */
     @Test
     void testCardComparison() {
         Card wildCard = Card.create("wild draw four");
@@ -28,6 +37,9 @@ class WildCardTest {
         assertEquals(wildCard, anotherWildCard);
     }
 
+    /**
+     * Tests that wild cards are always playable.
+     */
     @Test
     void testWildCardAlwaysPlayable() {
         ArrayList<Player> players = new ArrayList<>();

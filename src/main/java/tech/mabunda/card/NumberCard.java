@@ -3,7 +3,6 @@ package tech.mabunda.card;
 import tech.mabunda.card.enums.Color;
 import tech.mabunda.card.enums.Number;
 import tech.mabunda.card.enums.Type;
-import tech.mabunda.game.GameState;
 
 /**
  * Represents a number card in UNO (0-9).
