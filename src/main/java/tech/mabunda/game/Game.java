@@ -12,10 +12,13 @@ import tech.mabunda.player.Player;
 /**
  * Main class for managing the UNO game loop and setup.
  * <p>
- * Responsible for initializing the game, creating players (currently only human players), and running the main game loop.
- * Interacts with the {@link GameState} to manage the current state of the game, including player turns, move validation, and win/penalty handling.
+ * This class is responsible for initializing the game, creating players
+ * (currently only human players), and running the main game loop.
+ * It interacts with the {@link GameState} to manage the current state of the
+ * game, including player turns, card play, and win/penalty checks.
  * <p>
- * <b>Note:</b> AI and networked players are planned but not yet implemented. The game currently supports only human players via the command line.
+ * <b>Note:</b> Only human players are currently supported. AI and networked players
+ * are planned for future development.
  */
 public class Game {
     /**
@@ -33,11 +36,12 @@ public class Game {
 
     /**
      * Constructs a new Game instance with the specified number of players.
+     * Constructs a new Game instance with the specified number of players.
      * <p>
-     * If the number of players is outside the allowed range (2-10), it is clamped to the nearest valid value.
-     * The game state and players are initialized accordingly.
+     * Initializes the game object and sets up the game state with the given number of players.
+     * If the number is outside the allowed range, it is clamped to the minimum or maximum.
      *
-     * @param numPlayers the number of players to participate in the game
+     * @param numPlayers the number of players to create (clamped between 2 and 10)
      */
     public Game(int numPlayers) {
         if (numPlayers < minPlayers) {
@@ -60,8 +64,8 @@ public class Game {
     /**
      * Creates and returns a list of players for the game.
      * <p>
-     * Currently, only human players are supported. The first player is named "player 0",
-     * and subsequent players are named "player 1", "player 2", etc.
+     * Currently, only human players are supported. The first player is named "player 0"
+     * and the rest are named incrementally ("player 1", "player 2", etc).
      *
      * @return a list of Player objects (all human players)
      */
@@ -168,10 +172,8 @@ public class Game {
     /**
      * Starts the main UNO game loop.
      * <p>
-     * Sets up the game state and repeatedly processes player turns until only one player remains.
-     * Handles win and penalty conditions, processes each player's move, and advances turns.
-     *
-     * <b>Note:</b> Only human players are currently supported. AI and network play are planned for future development.
+     * Sets up the game state and repeatedly processes player turns until only one
+     * player remains. Handles win and penalty checks, player move input, and turn updates.
      */
     public void start() {
         sc = new Scanner(System.in);
@@ -181,14 +183,11 @@ public class Game {
             player = state.getCurrentPlayer();
 
             // Check win status or penalty, skip player if either is true
-            if (state.isWinner()) {
-                System.out.println(">>> " + player.getName() + " won.\n");
-                state.getPlayers().remove(player);
-                state.updatePlayer();
+            if (state.isWinner() || state.handlePenalty()) {
+                System.out.println(">>> Skipping " + player.getName() + "\n");
                 continue;
             } else if (state.handlePenalty()) {
                 System.out.println(">>> Skipping " + player.getName() + "\n");
-                state.updatePlayer();
                 continue;
             }
 

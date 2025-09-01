@@ -11,10 +11,9 @@ import tech.mabunda.player.Player;
 /**
  * Abstract base class for all UNO cards.
  * <p>
- * Provides common properties and methods for UNO cards, including type, value,
- * and color.
- * Subclasses must implement the {@link #play(GameState)} method to define
- * card-specific play behavior.
+ * Provides common properties and methods for UNO cards, including type, value, and color.
+ * Subclasses must implement the {@link #play(GameState)} method to define card-specific play behavior.
+ * Includes factory methods for card creation and logic for card matching, equality, and play.
  */
 public abstract class Card {
     /**
