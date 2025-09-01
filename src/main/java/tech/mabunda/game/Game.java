@@ -17,7 +17,8 @@ import tech.mabunda.player.Player;
  * It interacts with the {@link GameState} to manage the current state of the
  * game, including player turns, card play, and win/penalty checks.
  * <p>
- * <b>Note:</b> Only human players are currently supported. AI and networked players
+ * <b>Note:</b> Only human players are currently supported. AI and networked
+ * players
  * are planned for future development.
  */
 public class Game {
@@ -38,8 +39,10 @@ public class Game {
      * Constructs a new Game instance with the specified number of players.
      * Constructs a new Game instance with the specified number of players.
      * <p>
-     * Initializes the game object and sets up the game state with the given number of players.
-     * If the number is outside the allowed range, it is clamped to the minimum or maximum.
+     * Initializes the game object and sets up the game state with the given number
+     * of players.
+     * If the number is outside the allowed range, it is clamped to the minimum or
+     * maximum.
      *
      * @param numPlayers the number of players to create (clamped between 2 and 10)
      */
@@ -64,7 +67,8 @@ public class Game {
     /**
      * Creates and returns a list of players for the game.
      * <p>
-     * Currently, only human players are supported. The first player is named "player 0"
+     * Currently, only human players are supported. The first player is named
+     * "player 0"
      * and the rest are named incrementally ("player 1", "player 2", etc).
      *
      * @return a list of Player objects (all human players)
@@ -83,21 +87,29 @@ public class Game {
     }
 
     /**
-     * Displays the current player's turn prompt, including the top card, color to match, and the player's hand.
+     * Displays the current player's turn prompt, including the top card, color to
+     * match, and the player's hand.
      */
     public String getPrompt() {
         Player player = state.getCurrentPlayer();
         StringBuilder sb = new StringBuilder();
-        
+
         sb.append("It's " + player.getName() + "'s turn!");
         sb.append("\nThe top card is " + state.topDiscardPile());
         if (state.getColor() != null) {
-            sb.append("\nThe color to match is " + state.getColor());
+            sb.append("\nThe color to match is " + state.getColor().toString().toLowerCase());
         }
 
-        sb.append("\nYour hand:\n\t-> ");
-        for (Card card : player.getHand().getCards()) {
-            sb.append(card + ", ");
+        ArrayList<Card> cards = player.getHand().getCards();
+        
+        if (cards.isEmpty()) {
+            sb.append("\nYou currently have no cards.");
+        } else {
+            sb.append("\nYour hand:\n\t-> ");
+            sb.append(cards.get(0));
+            for (int i = 1; i < cards.size(); i++) {
+                sb.append(", " + cards.get(i));
+            }
         }
         sb.append("\nWhat's your move? ");
 
@@ -105,7 +117,8 @@ public class Game {
     }
 
     /**
-     * Handles user input for the current player's move, including drawing a card or playing a card.
+     * Handles user input for the current player's move, including drawing a card or
+     * playing a card.
      * Validates the move and updates the game state accordingly.
      *
      * @return true if a valid move was made, false otherwise
@@ -116,9 +129,8 @@ public class Game {
         boolean cardPlayed = false;
 
         do {
-            System.out.println(getPrompt());
+            System.out.print(getPrompt());
             command = sc.nextLine().toLowerCase();
-
 
             if (command.equals("draw")) {
                 player.getHand().addCard(state.getDeck().drawCard());
@@ -159,13 +171,13 @@ public class Game {
             cardPlayed = cardToPlay.play(state);
             if (cardPlayed) {
                 System.out.println(">>> [OK] " + player.getName() + " played " + cardToPlay + "\n");
-                
+
                 if (cardToPlay.getType() == Type.WILD) {
                     state.setColor(Color.valueOf(colorToSet));
                 }
-            }
-            else {
-                System.out.println(">>> [ERROR] You cannot play " + cardToPlay + " on " + state.topDiscardPile() + "\n");
+            } else {
+                System.out
+                        .println(">>> [ERROR] You cannot play " + cardToPlay + " on " + state.topDiscardPile() + "\n");
             }
         } while (!cardPlayed);
 
@@ -176,7 +188,8 @@ public class Game {
      * Starts the main UNO game loop.
      * <p>
      * Sets up the game state and repeatedly processes player turns until only one
-     * player remains. Handles win and penalty checks, player move input, and turn updates.
+     * player remains. Handles win and penalty checks, player move input, and turn
+     * updates.
      */
     public void start() {
         sc = new Scanner(System.in);

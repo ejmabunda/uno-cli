@@ -2,6 +2,7 @@ package tech.mabunda.game;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -55,5 +56,15 @@ public class GameTest {
 
         game = new Game(10);
         assertEquals(10, game.getState().getPlayers().size());
+    }
+
+    @Test
+    void testGetPrompt() {
+        Game game = new Game();
+        String prompt = game.getPrompt();
+        assertTrue(prompt.contains("It's player 0's turn!"));
+        assertTrue(prompt.contains("The top card is"));
+        assertTrue(prompt.contains("Your hand:\n\t-> "));
+        assertTrue(prompt.contains("What's your move? "));
     }
 }

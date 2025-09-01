@@ -79,4 +79,16 @@ class CardTest {
         card = Card.create("wild");
         assertEquals("wild", card.toString());
     }
+
+    @Test
+    void testCardSetColor() {
+        Card blueReverse = Card.create("blue reverse");
+        blueReverse.setColor(Color.GREEN);
+        assertEquals(Color.BLUE, blueReverse.getColor());
+
+        Card wild = Card.create("wild");
+        assertEquals(null, wild.getColor());
+        wild.setColor(Color.GREEN);
+        assertEquals(Color.GREEN, wild.getColor());
+    }
 }

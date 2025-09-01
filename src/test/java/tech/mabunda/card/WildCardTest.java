@@ -1,6 +1,7 @@
 package tech.mabunda.card;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
@@ -53,5 +54,11 @@ class WildCardTest {
         Card wildDrawFourCard = Card.create("wild draw four");
         state.getCurrentPlayer().getHand().addCard(wildDrawFourCard);
         assertTrue(wildDrawFourCard.play(state));
+    }
+
+    @Test
+    void testInvalidWildCard() {
+        Card invalidWildCard = Card.create("wild juice box");
+        assertNull(invalidWildCard);
     }
 }
