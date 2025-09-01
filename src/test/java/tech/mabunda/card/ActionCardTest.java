@@ -14,7 +14,13 @@ import tech.mabunda.game.GameState;
 import tech.mabunda.player.HumanPlayer;
 import tech.mabunda.player.Player;
 
+/**
+ * Unit tests for the {@link ActionCard} class, verifying initialization, comparison, and playability.
+ */
 class ActionCardTest {
+    /**
+     * Tests initialization of an ActionCard.
+     */
     @Test
     void testCardInit() {
         Card blueReverseCard = Card.create("blue reverse");
@@ -23,6 +29,9 @@ class ActionCardTest {
         assertEquals(Color.BLUE, blueReverseCard.getColor());
     }
 
+    /**
+     * Tests comparison of two ActionCards for equality.
+     */
     @Test
     void testCardComparison() {
         Card blueReverseCard = Card.create("blue reverse");
@@ -30,6 +39,9 @@ class ActionCardTest {
         assertEquals(blueReverseCard, anotherBlueReverseCard);
     }
 
+    /**
+     * Tests that an ActionCard is playable if it matches the top discard card, and not playable otherwise.
+     */
     @Test
     void testActionCardIsPlayable() {
         ArrayList<Player> players = new ArrayList<>();

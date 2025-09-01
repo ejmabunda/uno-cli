@@ -13,6 +13,11 @@ import tech.mabunda.player.Player;
  * Provides methods to access and update the current state of the game, such as the current player,
  * direction, color, and penalties. Handles turn progression, penalty application, and color management.
  */
+/**
+ * Manages the state of an UNO game, including players, deck, turn order, color, and penalties.
+ * <p>
+ * Provides methods to access and update the current state of the game, such as the current player, direction, and penalties.
+ */
 public class GameState {
     /**
      * The list of players in the game.

@@ -10,7 +10,7 @@ import tech.mabunda.player.HumanPlayer;
 import tech.mabunda.player.Player;
 
 /**
- * Manages the main UNO game loop and setup.
+ * Main class for managing the UNO game loop and setup.
  * <p>
  * This class is responsible for initializing the game, creating players
  * (currently only human players), and running the main game loop.
@@ -35,6 +35,7 @@ public class Game {
     private Scanner sc;
 
     /**
+     * Constructs a new Game instance with the specified number of players.
      * Constructs a new Game instance with the specified number of players.
      * <p>
      * Initializes the game object and sets up the game state with the given number of players.
@@ -81,6 +82,9 @@ public class Game {
         return state;
     }
 
+    /**
+     * Displays the current player's turn prompt, including the top card, color to match, and the player's hand.
+     */
     public void displayPrompt() {
         Player player = state.getCurrentPlayer();
         System.out.println("It's " + player.getName() + "'s turn!");
@@ -97,6 +101,12 @@ public class Game {
         System.out.print("\nWhat's your move? ");
     }
 
+    /**
+     * Handles user input for the current player's move, including drawing a card or playing a card.
+     * Validates the move and updates the game state accordingly.
+     *
+     * @return true if a valid move was made, false otherwise
+     */
     private boolean handleCommand() {
         Player player = state.getCurrentPlayer();
         String command;
@@ -176,6 +186,9 @@ public class Game {
             if (state.isWinner() || state.handlePenalty()) {
                 System.out.println(">>> Skipping " + player.getName() + "\n");
                 continue;
+            } else if (state.handlePenalty()) {
+                System.out.println(">>> Skipping " + player.getName() + "\n");
+                continue;
             }
 
             // Process player's move
@@ -184,5 +197,7 @@ public class Game {
             // Go to next player
             state.updatePlayer();
         }
+
+        System.out.println(">>> Game over!");
     }
 }
