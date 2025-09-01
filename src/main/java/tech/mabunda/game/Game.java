@@ -85,20 +85,23 @@ public class Game {
     /**
      * Displays the current player's turn prompt, including the top card, color to match, and the player's hand.
      */
-    public void displayPrompt() {
+    public String getPrompt() {
         Player player = state.getCurrentPlayer();
-        System.out.println("It's " + player.getName() + "'s turn!");
-        System.out.println("The top card is " + state.topDiscardPile());
+        StringBuilder sb = new StringBuilder();
+        
+        sb.append("It's " + player.getName() + "'s turn!");
+        sb.append("\nThe top card is " + state.topDiscardPile());
         if (state.getColor() != null) {
-            System.out.println("The color to match is " + state.getColor());
+            sb.append("\nThe color to match is " + state.getColor());
         }
-        System.out.print("Your hand:\n\t-> ");
 
+        sb.append("\nYour hand:\n\t-> ");
         for (Card card : player.getHand().getCards()) {
-            System.out.print(card + ", ");
+            sb.append(card + ", ");
         }
+        sb.append("\nWhat's your move? ");
 
-        System.out.print("\nWhat's your move? ");
+        return sb.toString();
     }
 
     /**
@@ -113,7 +116,7 @@ public class Game {
         boolean cardPlayed = false;
 
         do {
-            displayPrompt();
+            System.out.println(getPrompt());
             command = sc.nextLine().toLowerCase();
 
 
