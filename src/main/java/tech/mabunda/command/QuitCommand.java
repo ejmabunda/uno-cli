@@ -6,6 +6,11 @@ import tech.mabunda.card.Card;
 import tech.mabunda.game.GameState;
 import tech.mabunda.player.Player;
 
+/**
+ * Command to remove the current player from the game and return their cards to the draw pile.
+ * <p>
+ * When executed, the player leaves the game and their cards are returned to the deck.
+ */
 public class QuitCommand extends Command {
     public QuitCommand() {
         this.name = "quit";

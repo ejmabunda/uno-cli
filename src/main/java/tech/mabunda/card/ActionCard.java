@@ -5,11 +5,10 @@ import tech.mabunda.card.enums.Color;
 import tech.mabunda.card.enums.Type;
 
 /**
- * Represents an action card in UNO (e.g., Skip, Reverse, Draw Two).
+ * Represents an action card in Uno (Skip, Reverse, Draw Two).
  * <p>
  * Action cards have special effects when played, such as skipping the next player's turn,
- * reversing the direction of play, or forcing the next player to draw cards.
- * Extends the {@link Card} class and provides specific behavior for action cards.
+ * reversing play direction, or forcing the next player to draw cards.
  */
 public class ActionCard extends Card {
     /**

@@ -5,6 +5,11 @@ import com.google.gson.JsonObject;
 import tech.mabunda.game.GameState;
 import tech.mabunda.player.Player;
 
+/**
+ * Command to display the current player's hand in the Uno game.
+ * <p>
+ * Returns a string representation of the player's hand when executed.
+ */
 public class HandCommand extends Command {
     public HandCommand() {
         this.name = "hand";

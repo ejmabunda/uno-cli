@@ -14,10 +14,9 @@ import tech.mabunda.card.enums.Wild;
 import tech.mabunda.player.Player;
 
 /**
- * Represents a deck of UNO cards, including draw and discard piles.
+ * Represents a deck of Uno cards, including draw and discard piles.
  * <p>
- * Provides methods to initialize, shuffle, and draw cards from the deck, as well as to deal cards to players and manage the discard pile.
- * Handles all card distribution and pile management according to UNO rules.
+ * Handles card distribution, shuffling, and pile management according to Uno rules.
  */
 public class Deck {
     /**

@@ -4,11 +4,10 @@ package tech.mabunda.player;
 import tech.mabunda.deck.Deck;
 
 /**
- * Represents a human-controlled player in the UNO game.
+ * Represents a human-controlled player in the Uno game.
  * <p>
- * Extends {@link Player} and implements logic for a player whose actions are determined by user input,
- * such as via a command-line interface (CLI) or graphical user interface (GUI).
- * Methods in this class interact with the user for making moves, drawing cards, and other game actions.
+ * Implements logic for a player whose actions are determined by user input via the CLI.
+ * Methods interact with the user for making moves, drawing cards, and other game actions.
  */
 public class HumanPlayer extends Player {
     /**

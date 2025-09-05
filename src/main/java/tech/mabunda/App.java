@@ -6,10 +6,10 @@ import picocli.CommandLine.Option;
 import tech.mabunda.game.Game;
 
 /**
- * Entry point for the UNO CLI application.
+ * Entry point for the UnoCLI application.
  * <p>
- * This class contains the main method to launch the UNO game from the command line interface (CLI).
- * It is responsible for initializing the application and starting the game loop.
+ * Launches the Uno game from the command line, initializes the game, and starts the game loop.
+ * Only human players are supported.
  */
 @Command(
     name = "UnoCLI",

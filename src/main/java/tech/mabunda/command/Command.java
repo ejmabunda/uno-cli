@@ -4,6 +4,12 @@ import com.google.gson.JsonObject;
 
 import tech.mabunda.game.GameState;
 
+/**
+ * Abstract base class for CLI commands in the Uno game.
+ * <p>
+ * Subclasses implement specific commands (help, hand, quit) that interact with the game state.
+ * Provides a factory method to create commands by name.
+ */
 public abstract class Command {
     protected String name;
 

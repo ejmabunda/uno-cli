@@ -5,10 +5,9 @@ import java.util.ArrayList;
 import tech.mabunda.card.Card;
 
 /**
- * Represents a hand of cards held by a player in the UNO game.
+ * Represents a hand of cards held by a player in the Uno game.
  * <p>
- * A simple wrapper around a list of {@link tech.mabunda.card.Card} objects, providing methods to add, remove,
- * and check the number of cards in the hand. Used by all player types.
+ * Simple wrapper around a list of cards, providing methods to add, remove, and check the number of cards in the hand.
  */
 public class Hand {
     /**

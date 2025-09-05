@@ -5,10 +5,9 @@ import tech.mabunda.card.enums.Number;
 import tech.mabunda.card.enums.Type;
 
 /**
- * Represents a number card in UNO (0-9).
+ * Represents a number card in Uno (0-9).
  * <p>
- * Number cards are the most common cards in UNO and have no special effects.
- * Extends the {@link Card} class and provides specific behavior for number cards.
+ * Number cards are the most common cards and have no special effects.
  */
 public class NumberCard extends Card {
     /**

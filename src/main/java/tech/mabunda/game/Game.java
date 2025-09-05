@@ -10,16 +10,11 @@ import tech.mabunda.player.HumanPlayer;
 import tech.mabunda.player.Player;
 
 /**
- * Main class for managing the UNO game loop and setup.
+ * Main class for managing the Uno game loop and setup.
  * <p>
- * This class is responsible for initializing the game, creating players
- * (currently only human players), and running the main game loop.
- * It interacts with the {@link GameState} to manage the current state of the
- * game, including player turns, card play, and win/penalty checks.
- * <p>
- * <b>Note:</b> Only human players are currently supported. AI and networked
- * players
- * are planned for future development.
+ * Initializes the game, creates human players, and runs the main game loop.
+ * Interacts with {@link GameState} to manage player turns, card play, and win/penalty checks.
+ * Only human players are supported.
  */
 public class Game {
     /**

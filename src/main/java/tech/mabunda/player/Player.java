@@ -6,12 +6,10 @@ import tech.mabunda.card.Card;
 import tech.mabunda.deck.Deck;
 
 /**
- * Abstract base class representing a player in the UNO game.
+ * Abstract base class representing a player in the Uno game.
  * <p>
- * Each player has a name and a hand of cards. Subclasses must implement the logic for playing cards,
- * drawing cards, and determining if a play is possible, according to the rules of UNO or any custom rules.
- * Provides common functionality for all player types, including access to the player's name and hand,
- * and default logic for checking valid moves.
+ * Each player has a name and a hand of cards. Subclasses implement logic for playing and drawing cards.
+ * Provides common functionality for all player types, including access to the player's name and hand.
  */
 public abstract class Player {
     /**
