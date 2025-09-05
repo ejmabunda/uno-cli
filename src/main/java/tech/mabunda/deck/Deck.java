@@ -14,10 +14,9 @@ import tech.mabunda.card.enums.Wild;
 import tech.mabunda.player.Player;
 
 /**
- * Represents a deck of UNO cards, including draw and discard piles.
+ * Represents a deck of Uno cards, including draw and discard piles.
  * <p>
- * Provides methods to initialize, shuffle, and draw cards from the deck, as well as to deal cards to players and manage the discard pile.
- * Handles all card distribution and pile management according to UNO rules.
+ * Handles card distribution, shuffling, and pile management according to Uno rules.
  */
 public class Deck {
     /**
@@ -52,14 +51,14 @@ public class Deck {
      * Shuffles the draw pile. If the draw pile is low, combines it with the discard pile (except the top card),
      * shuffles, and resets the discard pile.
      */
-    private void shuffle() {
+    public void shuffle() {
         if (discard_pile.isEmpty()) {
             Collections.shuffle(draw_pile);
             return;
         }
 
         Card topDiscardPileCard = discard_pile.get(discard_pile.size() - 1);
-        discard_pile.remove(discard_pile.size());
+        discard_pile.remove(discard_pile.size() - 1);
 
         draw_pile.addAll(discard_pile);
         Collections.shuffle(draw_pile);

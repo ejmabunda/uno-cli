@@ -4,6 +4,11 @@ import com.google.gson.JsonObject;
 
 import tech.mabunda.game.GameState;
 
+/**
+ * Command to display help information for available Uno CLI commands.
+ * <p>
+ * Returns a list of supported commands and their descriptions when executed.
+ */
 public class HelpCommand extends Command {
     public HelpCommand() {
         this.name = "help";
