@@ -101,8 +101,8 @@ mvn package
 
 ## Roadmap
 
-- [ ] Basic game mechanics and card system
-- [ ] Player management and turn system
+- [x] Basic game mechanics and card system
+- [x] Player management and turn system
 - [ ] AI player implementation
 - [ ] Game state persistence
 - [ ] Network multiplayer support
