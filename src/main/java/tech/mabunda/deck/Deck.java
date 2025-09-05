@@ -51,14 +51,14 @@ public class Deck {
      * Shuffles the draw pile. If the draw pile is low, combines it with the discard pile (except the top card),
      * shuffles, and resets the discard pile.
      */
-    private void shuffle() {
+    public void shuffle() {
         if (discard_pile.isEmpty()) {
             Collections.shuffle(draw_pile);
             return;
         }
 
         Card topDiscardPileCard = discard_pile.get(discard_pile.size() - 1);
-        discard_pile.remove(discard_pile.size());
+        discard_pile.remove(discard_pile.size() - 1);
 
         draw_pile.addAll(discard_pile);
         Collections.shuffle(draw_pile);

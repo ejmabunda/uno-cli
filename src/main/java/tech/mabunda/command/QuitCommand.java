@@ -25,6 +25,7 @@ public class QuitCommand extends Command {
         // Place player's cards back to draw pile
         for (Card card: currentPlayer.getHand().getCards()) {
             state.getDeck().getDrawPile().add(card);
+            state.getDeck().shuffle();
         }
 
         // Remove player from game

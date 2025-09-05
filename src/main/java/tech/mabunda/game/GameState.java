@@ -176,4 +176,8 @@ public class GameState {
             currentPlayerIndex = players.size() - 1;
         }
     }
+
+    public void setCurrentPlayerIndex(int i) {
+        currentPlayerIndex = i;
+    }
 }
