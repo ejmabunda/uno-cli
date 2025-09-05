@@ -21,12 +21,13 @@ public class QuitCommand extends Command {
         JsonObject response = new JsonObject();
 
         Player currentPlayer = state.getCurrentPlayer();
+        String currentPlayerName = currentPlayer.getName();
 
         // Place player's cards back to draw pile
         for (Card card: currentPlayer.getHand().getCards()) {
             state.getDeck().getDrawPile().add(card);
-            state.getDeck().shuffle();
         }
+        state.getDeck().shuffle();
 
         // Remove player from game
         int removedIndex = state.getPlayers().indexOf(currentPlayer);
@@ -44,7 +45,7 @@ public class QuitCommand extends Command {
             }
         }
         response.addProperty("result", "OK");
-        response.addProperty("data", currentPlayer.getName() + " left the game.");
+        response.addProperty("data", currentPlayerName + " left the game.");
 
         return response;
     }
