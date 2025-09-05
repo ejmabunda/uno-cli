@@ -28,8 +28,20 @@ public class QuitCommand extends Command {
         }
 
         // Remove player from game
+        int removedIndex = state.getPlayers().indexOf(currentPlayer);
         state.getPlayers().remove(currentPlayer);
 
+        // Update current player index to avoid out of bounds errors
+        if (state.getPlayers().isEmpty()) {
+            state.setCurrentPlayerIndex(-1);
+        } else {
+            // If the removed player was last, move to first player
+            if (removedIndex >= state.getPlayers().size()) {
+                state.setCurrentPlayerIndex(0);
+            } else {
+                state.setCurrentPlayerIndex(removedIndex);
+            }
+        }
         response.addProperty("result", "OK");
         response.addProperty("data", currentPlayer.getName() + " left the game.");
 
