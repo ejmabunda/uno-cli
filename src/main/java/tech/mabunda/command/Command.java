@@ -12,6 +12,7 @@ public abstract class Command {
     public static Command create(String command) {
         return switch (command.toLowerCase()) {
             case "help" -> new HelpCommand();
+            case "hand" -> new HandCommand();
             default -> null;
         };
     }

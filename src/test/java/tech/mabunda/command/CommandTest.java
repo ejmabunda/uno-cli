@@ -1,10 +1,12 @@
 package tech.mabunda.command;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.util.ArrayList;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.google.gson.JsonObject;
@@ -14,24 +16,33 @@ import tech.mabunda.player.HumanPlayer;
 import tech.mabunda.player.Player;
 
 public class CommandTest {
+    private ArrayList<Player> players;
+    private GameState state;
+
+    @BeforeEach
+    void setUp() {
+        players  = new ArrayList<>();
+        players.add(new HumanPlayer("player 0"));
+        players.add(new HumanPlayer("player 1"));
+        players.add(new HumanPlayer("player 2"));
+        state  = new GameState(players);
+    }
+
     @Test
     void testCardInit() {
         Command invalidCommand = Command.create("start");
         assertNull(invalidCommand);
         
         Command helpCommand = Command.create("help");
-        assertEquals(HelpCommand.class, command.getClass());
+        assertEquals(HelpCommand.class, helpCommand.getClass());
+
+        Command handCommand = Command.create("hand");
+        assertEquals(HandCommand.class, handCommand.getClass());
     }
 
     @Test
     void testHelpCommandExecute() {
-        Command helpCommand = Command.create("help");
-
-        ArrayList<Player> players = new ArrayList<>();
-        players.add(new HumanPlayer("player 0"));
-        players.add(new HumanPlayer("player 1"));
-        players.add(new HumanPlayer("player 2"));
-        GameState state = new GameState(players);
+        Command helpCommand = Command.create("help");        
 
         JsonObject response = helpCommand.execute(state);
         String expected =
@@ -45,5 +56,13 @@ public class CommandTest {
         
         assertEquals("OK", response.get("result").getAsString());
         assertEquals(expected, response.get("data").getAsString());
+    }
+
+    @Test
+    void testHandCommandExecutedSuccessfully() {
+        Command handCommand = Command.create("hand");
+        JsonObject response = handCommand.execute(state);
+        assertEquals("OK", response.get("result").getAsString());
+        assertNotNull(response.get("data").getAsString());
     }
 }
