@@ -16,7 +16,7 @@ UnoCLI brings the beloved Uno card game experience to your terminal. Play agains
 - **Game Statistics**: Planned feature
 - **Custom Rules**: Planned feature
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -99,7 +99,7 @@ mvn test
 mvn package
 ```
 
-## 🎯 Roadmap
+## Roadmap
 
 - [ ] Basic game mechanics and card system
 - [ ] Player management and turn system
@@ -109,15 +109,15 @@ mvn package
 - [ ] Tournament mode
 - [ ] Custom card themes
 
-## 🤝 Contributing
+## Contributing
 
 This is a portfolio project, but suggestions and feedback are welcome! Feel free to open an issue or submit a pull request.
 
-## 📝 License
+## License
 
 This project is open source and available under the [MIT License](LICENSE).
 
-## 📧 Contact
+## Contact
 
 **Junior Mabunda** - [GitHub](https://github.com/ejmabunda)
 
