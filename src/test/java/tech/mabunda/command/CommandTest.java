@@ -38,6 +38,9 @@ public class CommandTest {
 
         Command handCommand = Command.create("hand");
         assertEquals(HandCommand.class, handCommand.getClass());
+
+        Command quitCommand = Command.create("quit");
+        assertEquals(QuitCommand.class, quitCommand.getClass());
     }
 
     @Test
@@ -64,5 +67,14 @@ public class CommandTest {
         JsonObject response = handCommand.execute(state);
         assertEquals("OK", response.get("result").getAsString());
         assertNotNull(response.get("data").getAsString());
+    }
+
+    @Test
+    void testQuitCommandExecutedSuccessfully() {
+        Command quitCommand = Command.create("quit");
+        JsonObject response = quitCommand.execute(state);
+        assertNotNull(response);
+        assertEquals("OK", response.get("result").getAsString());
+        assertEquals("player 0 left the game.", response.get("data").getAsString());
     }
 }

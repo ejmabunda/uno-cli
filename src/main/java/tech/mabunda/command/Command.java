@@ -13,6 +13,7 @@ public abstract class Command {
         return switch (command.toLowerCase()) {
             case "help" -> new HelpCommand();
             case "hand" -> new HandCommand();
+            case "quit" -> new QuitCommand();
             default -> null;
         };
     }
